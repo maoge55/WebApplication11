@@ -1,0 +1,1074 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5CDFF0BD-7C4B-4385-95CD-97C17E809044}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebApplication11</RootNamespace>
+    <AssemblyName>WebApplication11</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44367</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Enums.NET, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
+      <HintPath>..\packages\Enums.NET.4.0.1\lib\net45\Enums.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="ExtendedNumerics.BigDecimal, Version=2025.1001.2.129, Culture=neutral, PublicKeyToken=65f1315a45ad8949, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExtendedNumerics.BigDecimal.2025.1001.2.129\lib\net472\ExtendedNumerics.BigDecimal.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.4.2.13, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.4.2\lib\netstandard2.0\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.Signed.5.0.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.0\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.6.0\lib\net472\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.6.0\lib\net472\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.6.0\lib\net472\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.6.0\lib\net472\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.1\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.ImageSharp.2.1.10\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.XLS, Version=14.2.1.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.XLS.14.2.1\lib\net40\Spire.XLS.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq.Async, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Async.4.0.0\lib\net461\System.Linq.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.8.0.1\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=8.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.8.0.2\lib\net462\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.8.0.0\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="3333333.aspx" />
+    <Content Include="ca.asmx" />
+    <Content Include="cg\cjt\1688采购记录检索.aspx" />
+    <Content Include="cg\cjt\ImageProxy.aspx" />
+    <Content Include="cg\cjt\头程物流表.aspx" />
+    <Content Include="cg\cjt\广告测品订单.aspx" />
+    <Content Include="cg\cjt\库存计划表.aspx" />
+    <Content Include="cg\cjt\本地收货登记.aspx" />
+    <Content Include="cg\cjt\残次品退换货.aspx" />
+    <Content Include="cg\cjt\点击任务表.aspx" />
+    <Content Include="cg\cjt\订单数据展示.aspx" />
+    <Content Include="cg\cjt\采购单_印尼_管理员.aspx" />
+    <Content Include="cg\cjt\采购单_印尼_采购员.aspx" />
+    <Content Include="cg\cjt\采购单_泰国_管理员.aspx" />
+    <Content Include="cg\cjt\采购单_泰国_采购员.aspx" />
+    <Content Include="cg\cjt\采购订单补充资料.aspx" />
+    <Content Include="cg\cjt\采购销售海外仓数据匹配.aspx" />
+    <Content Include="cg\cjt\采集数据_1688_管理员.aspx" />
+    <Content Include="cg\cjt\采集数据_1688_运营.aspx" />
+    <Content Include="cg\cjt\销量和库存表.aspx" />
+    <Content Include="cg\clogin.aspx" />
+    <Content Include="cg\main.aspx" />
+    <Content Include="cg\d2.aspx" />
+    <Content Include="cg\me\POD产品审核.aspx" />
+    <Content Include="cg\me\POD原图.aspx" />
+    <Content Include="cg\me\入仓产品图片视频.aspx" />
+    <Content Include="cg\me\出错任务.aspx" />
+    <Content Include="cg\me\出单词.aspx" />
+    <Content Include="cg\me\泰国虾皮群控任务表.aspx" />
+    <Content Include="cg\me\虾皮菲律宾广告产品找货源.aspx" />
+    <Content Include="cg\me\虾皮创建广告任务.aspx" />
+    <Content Include="cg\me\海外仓到仓数量登记.aspx" />
+    <Content Include="cg\me\海运运费登记.aspx" />
+    <Content Include="cg\me\精准匹配广告词.aspx" />
+    <Content Include="cg\me\翻译成泰语.aspx" />
+    <Content Include="cg\me\广东发出信息登记.aspx" />
+    <Content Include="cg\me\常规任务表.aspx" />
+    <Content Include="cg\me\虾皮广告任务表.aspx" />
+    <Content Include="cg\me\虾皮我的产品概况.aspx" />
+    <Content Include="cg\me\POD产品审核数量查看与分配.aspx" />
+    <Content Include="cg\me\扩展侵权词处理.aspx" />
+    <Content Include="cg\me\广告任务查看.aspx" />
+    <Content Include="cg\me\虾皮更新模版.aspx" />
+    <Content Include="cg\me\虾皮加购成本表.aspx" />
+    <Content Include="cg\me\阿里狗买家纠纷.aspx" />
+    <Content Include="cg\me\菲律宾虾皮类目链接.aspx" />
+    <Content Include="cg\me\虾皮菲律宾广告产品找货源数量查看与分配.aspx" />
+    <Content Include="cg\me\阿里狗本地库存表.aspx" />
+    <Content Include="cg\me\阿里狗订单.aspx" />
+    <Content Include="cg\me\阿里狗买家消息.aspx" />
+    <Content Include="cg\me\手动广告选品.aspx" />
+    <Content Include="cg\me\阿里狗首页信息.aspx" />
+    <Content Include="cg\me\阿里狗找货源数量查看与分配.aspx" />
+    <Content Include="cg\me\虾皮违规产品.aspx" />
+    <Content Include="cg\me\阿里狗群控任务表.aspx" />
+    <Content Include="cg\me\虾皮群控任务表.aspx" />
+    <Content Include="cg\me\虾皮首页信息.aspx" />
+    <Content Include="cg\me\莆田发出信息登记.aspx" />
+    <Content Include="cg\me\财务表.aspx" />
+    <Content Include="cg\me\财务表补充重量体积.aspx" />
+    <Content Include="cg\me\财务表补充信息.aspx" />
+    <Content Include="cg\me\物流审核.aspx" />
+    <Content Include="cg\me\管理广告测试产品.aspx" />
+    <Content Include="cg\me\波兰阿里狗审核体积.aspx" />
+    <Content Include="cg\me\搜索货源.aspx" />
+    <Content Include="cg\me\阿里狗更新模版.aspx" />
+    <Content Include="cg\me\翻译成印尼语.aspx" />
+    <Content Include="cg\me\阿里狗订单查货源.aspx" />
+    <Content Include="cg\me\阿里狗拉黑链接.aspx" />
+    <Content Include="cg\me\阿里狗找货源.aspx" />
+    <Content Include="cg\me\财务表补充SKUID和运营编码.aspx" />
+    <Content Include="cg\me\POD店铺审核.aspx" />
+    <Content Include="cg\me\仓库.aspx" />
+    <Content Include="cg\me\上架补充SKU.aspx" />
+    <Content Include="cg\me\重新采购无货订单.aspx" />
+    <Content Include="cg\me\找货源.aspx" />
+    <Content Include="cg\me\初次入仓采购.aspx" />
+    <Content Include="cg\me\长期入仓采购.aspx" />
+    <Content Include="cg\see.aspx" />
+    <Content Include="cg\tb\SKU优化停售_管理员页面.aspx" />
+    <Content Include="cg\tb\产品利润表_印尼_管理员.aspx" />
+    <Content Include="cg\tb\印尼出单数据_转_泰国广告测品.aspx" />
+    <Content Include="cg\tb\头程物流价格_运营.aspx" />
+    <Content Include="cg\tb\广告测品出单数据分析_管理员.aspx" />
+    <Content Include="cg\tb\销售状态_库存量_管理员页面.aspx" />
+    <Content Include="fc.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="jj.aspx" />
+    <Content Include="out2.aspx" />
+    <Content Include="out.aspx" />
+    <Content Include="pinpaiwhite.aspx" />
+    <Content Include="pinpai.aspx" />
+    <Content Include="DT.aspx" />
+    <Content Include="pm.aspx" />
+    <Content Include="pipei.aspx" />
+    <Content Include="pz.aspx" />
+    <Content Include="jyc.aspx" />
+    <Content Include="addyjz.aspx" />
+    <Content Include="uplb.aspx" />
+    <Content Include="zdyjz.aspx" />
+    <Content Include="mb.aspx" />
+    <Content Include="b.aspx" />
+    <Content Include="addother.aspx" />
+    <Content Include="left.ascx" />
+    <Content Include="login.aspx" />
+    <Content Include="YGL.aspx" />
+    <Content Include="other.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3333333.aspx.cs">
+      <DependentUpon>3333333.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3333333.aspx.designer.cs">
+      <DependentUpon>3333333.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ca.asmx.cs">
+      <DependentUpon>ca.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\1688采购记录检索.aspx.cs">
+      <DependentUpon>1688采购记录检索.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\1688采购记录检索.aspx.designer.cs">
+      <DependentUpon>1688采购记录检索.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\ImageProxy.aspx.cs">
+      <DependentUpon>ImageProxy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\ImageProxy.aspx.designer.cs">
+      <DependentUpon>ImageProxy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\头程物流表.aspx.cs">
+      <DependentUpon>头程物流表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\头程物流表.aspx.designer.cs">
+      <DependentUpon>头程物流表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\广告测品订单.aspx.cs">
+      <DependentUpon>广告测品订单.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\广告测品订单.aspx.designer.cs">
+      <DependentUpon>广告测品订单.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\库存计划表.aspx.cs">
+      <DependentUpon>库存计划表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\库存计划表.aspx.designer.cs">
+      <DependentUpon>库存计划表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\本地收货登记.aspx.cs">
+      <DependentUpon>本地收货登记.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\本地收货登记.aspx.designer.cs">
+      <DependentUpon>本地收货登记.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\残次品退换货.aspx.cs">
+      <DependentUpon>残次品退换货.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\残次品退换货.aspx.designer.cs">
+      <DependentUpon>残次品退换货.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\点击任务表.aspx.cs">
+      <DependentUpon>点击任务表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\点击任务表.aspx.designer.cs">
+      <DependentUpon>点击任务表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\订单数据展示.aspx.cs">
+      <DependentUpon>订单数据展示.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\订单数据展示.aspx.designer.cs">
+      <DependentUpon>订单数据展示.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\采购单_印尼_管理员.aspx.cs">
+      <DependentUpon>采购单_印尼_管理员.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\采购单_印尼_管理员.aspx.designer.cs">
+      <DependentUpon>采购单_印尼_管理员.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\采购单_印尼_采购员.aspx.cs">
+      <DependentUpon>采购单_印尼_采购员.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\采购单_印尼_采购员.aspx.designer.cs">
+      <DependentUpon>采购单_印尼_采购员.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\采购单_泰国_管理员.aspx.cs">
+      <DependentUpon>采购单_泰国_管理员.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\采购单_泰国_管理员.aspx.designer.cs">
+      <DependentUpon>采购单_泰国_管理员.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\采购单_泰国_采购员.aspx.cs">
+      <DependentUpon>采购单_泰国_采购员.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\采购单_泰国_采购员.aspx.designer.cs">
+      <DependentUpon>采购单_泰国_采购员.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\采购订单补充资料.aspx.cs">
+      <DependentUpon>采购订单补充资料.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\采购订单补充资料.aspx.designer.cs">
+      <DependentUpon>采购订单补充资料.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\采购销售海外仓数据匹配.aspx.cs">
+      <DependentUpon>采购销售海外仓数据匹配.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\采购销售海外仓数据匹配.aspx.designer.cs">
+      <DependentUpon>采购销售海外仓数据匹配.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\采集数据_1688_管理员.aspx.cs">
+      <DependentUpon>采集数据_1688_管理员.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\采集数据_1688_管理员.aspx.designer.cs">
+      <DependentUpon>采集数据_1688_管理员.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\采集数据_1688_运营.aspx.cs">
+      <DependentUpon>采集数据_1688_运营.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\采集数据_1688_运营.aspx.designer.cs">
+      <DependentUpon>采集数据_1688_运营.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\cjt\销量和库存表.aspx.cs">
+      <DependentUpon>销量和库存表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\cjt\销量和库存表.aspx.designer.cs">
+      <DependentUpon>销量和库存表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\clogin.aspx.cs">
+      <DependentUpon>clogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\clogin.aspx.designer.cs">
+      <DependentUpon>clogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\d2.aspx.cs">
+      <DependentUpon>d2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\d2.aspx.designer.cs">
+      <DependentUpon>d2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\POD产品审核.aspx.cs">
+      <DependentUpon>POD产品审核.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\POD产品审核.aspx.designer.cs">
+      <DependentUpon>POD产品审核.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\POD原图.aspx.cs">
+      <DependentUpon>POD原图.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\POD原图.aspx.designer.cs">
+      <DependentUpon>POD原图.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\入仓产品图片视频.aspx.cs">
+      <DependentUpon>入仓产品图片视频.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\入仓产品图片视频.aspx.designer.cs">
+      <DependentUpon>入仓产品图片视频.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\出错任务.aspx.cs">
+      <DependentUpon>出错任务.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\出错任务.aspx.designer.cs">
+      <DependentUpon>出错任务.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\出单词.aspx.cs">
+      <DependentUpon>出单词.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\出单词.aspx.designer.cs">
+      <DependentUpon>出单词.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\泰国虾皮群控任务表.aspx.cs">
+      <DependentUpon>泰国虾皮群控任务表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\泰国虾皮群控任务表.aspx.designer.cs">
+      <DependentUpon>泰国虾皮群控任务表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮菲律宾广告产品找货源.aspx.cs">
+      <DependentUpon>虾皮菲律宾广告产品找货源.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮菲律宾广告产品找货源.aspx.designer.cs">
+      <DependentUpon>虾皮菲律宾广告产品找货源.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮创建广告任务.aspx.cs">
+      <DependentUpon>虾皮创建广告任务.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮创建广告任务.aspx.designer.cs">
+      <DependentUpon>虾皮创建广告任务.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\海外仓到仓数量登记.aspx.cs">
+      <DependentUpon>海外仓到仓数量登记.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\海外仓到仓数量登记.aspx.designer.cs">
+      <DependentUpon>海外仓到仓数量登记.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\海运运费登记.aspx.cs">
+      <DependentUpon>海运运费登记.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\海运运费登记.aspx.designer.cs">
+      <DependentUpon>海运运费登记.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\精准匹配广告词.aspx.cs">
+      <DependentUpon>精准匹配广告词.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\精准匹配广告词.aspx.designer.cs">
+      <DependentUpon>精准匹配广告词.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\翻译成泰语.aspx.cs">
+      <DependentUpon>翻译成泰语.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\翻译成泰语.aspx.designer.cs">
+      <DependentUpon>翻译成泰语.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\广东发出信息登记.aspx.cs">
+      <DependentUpon>广东发出信息登记.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\广东发出信息登记.aspx.designer.cs">
+      <DependentUpon>广东发出信息登记.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\常规任务表.aspx.cs">
+      <DependentUpon>常规任务表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\常规任务表.aspx.designer.cs">
+      <DependentUpon>常规任务表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮广告任务表.aspx.cs">
+      <DependentUpon>虾皮广告任务表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮广告任务表.aspx.designer.cs">
+      <DependentUpon>虾皮广告任务表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮我的产品概况.aspx.cs">
+      <DependentUpon>虾皮我的产品概况.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮我的产品概况.aspx.designer.cs">
+      <DependentUpon>虾皮我的产品概况.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\POD产品审核数量查看与分配.aspx.cs">
+      <DependentUpon>POD产品审核数量查看与分配.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\POD产品审核数量查看与分配.aspx.designer.cs">
+      <DependentUpon>POD产品审核数量查看与分配.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\扩展侵权词处理.aspx.cs">
+      <DependentUpon>扩展侵权词处理.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\扩展侵权词处理.aspx.designer.cs">
+      <DependentUpon>扩展侵权词处理.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\广告任务查看.aspx.cs">
+      <DependentUpon>广告任务查看.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\广告任务查看.aspx.designer.cs">
+      <DependentUpon>广告任务查看.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮更新模版.aspx.cs">
+      <DependentUpon>虾皮更新模版.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮更新模版.aspx.designer.cs">
+      <DependentUpon>虾皮更新模版.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮加购成本表.aspx.cs">
+      <DependentUpon>虾皮加购成本表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮加购成本表.aspx.designer.cs">
+      <DependentUpon>虾皮加购成本表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗买家纠纷.aspx.cs">
+      <DependentUpon>阿里狗买家纠纷.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗买家纠纷.aspx.designer.cs">
+      <DependentUpon>阿里狗买家纠纷.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\菲律宾虾皮类目链接.aspx.cs">
+      <DependentUpon>菲律宾虾皮类目链接.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\菲律宾虾皮类目链接.aspx.designer.cs">
+      <DependentUpon>菲律宾虾皮类目链接.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮菲律宾广告产品找货源数量查看与分配.aspx.cs">
+      <DependentUpon>虾皮菲律宾广告产品找货源数量查看与分配.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮菲律宾广告产品找货源数量查看与分配.aspx.designer.cs">
+      <DependentUpon>虾皮菲律宾广告产品找货源数量查看与分配.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗本地库存表.aspx.cs">
+      <DependentUpon>阿里狗本地库存表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗本地库存表.aspx.designer.cs">
+      <DependentUpon>阿里狗本地库存表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗订单.aspx.cs">
+      <DependentUpon>阿里狗订单.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗订单.aspx.designer.cs">
+      <DependentUpon>阿里狗订单.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗买家消息.aspx.cs">
+      <DependentUpon>阿里狗买家消息.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗买家消息.aspx.designer.cs">
+      <DependentUpon>阿里狗买家消息.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\手动广告选品.aspx.cs">
+      <DependentUpon>手动广告选品.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\手动广告选品.aspx.designer.cs">
+      <DependentUpon>手动广告选品.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗首页信息.aspx.cs">
+      <DependentUpon>阿里狗首页信息.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗首页信息.aspx.designer.cs">
+      <DependentUpon>阿里狗首页信息.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗找货源数量查看与分配.aspx.cs">
+      <DependentUpon>阿里狗找货源数量查看与分配.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗找货源数量查看与分配.aspx.designer.cs">
+      <DependentUpon>阿里狗找货源数量查看与分配.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮违规产品.aspx.cs">
+      <DependentUpon>虾皮违规产品.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮违规产品.aspx.designer.cs">
+      <DependentUpon>虾皮违规产品.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗群控任务表.aspx.cs">
+      <DependentUpon>阿里狗群控任务表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗群控任务表.aspx.designer.cs">
+      <DependentUpon>阿里狗群控任务表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮群控任务表.aspx.cs">
+      <DependentUpon>虾皮群控任务表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮群控任务表.aspx.designer.cs">
+      <DependentUpon>虾皮群控任务表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\虾皮首页信息.aspx.cs">
+      <DependentUpon>虾皮首页信息.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\虾皮首页信息.aspx.designer.cs">
+      <DependentUpon>虾皮首页信息.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\莆田发出信息登记.aspx.cs">
+      <DependentUpon>莆田发出信息登记.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\莆田发出信息登记.aspx.designer.cs">
+      <DependentUpon>莆田发出信息登记.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\财务表.aspx.cs">
+      <DependentUpon>财务表.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\财务表.aspx.designer.cs">
+      <DependentUpon>财务表.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\财务表补充重量体积.aspx.cs">
+      <DependentUpon>财务表补充重量体积.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\财务表补充重量体积.aspx.designer.cs">
+      <DependentUpon>财务表补充重量体积.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\财务表补充信息.aspx.cs">
+      <DependentUpon>财务表补充信息.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\财务表补充信息.aspx.designer.cs">
+      <DependentUpon>财务表补充信息.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\物流审核.aspx.cs">
+      <DependentUpon>物流审核.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\物流审核.aspx.designer.cs">
+      <DependentUpon>物流审核.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\管理广告测试产品.aspx.cs">
+      <DependentUpon>管理广告测试产品.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\管理广告测试产品.aspx.designer.cs">
+      <DependentUpon>管理广告测试产品.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\波兰阿里狗审核体积.aspx.cs">
+      <DependentUpon>波兰阿里狗审核体积.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\波兰阿里狗审核体积.aspx.designer.cs">
+      <DependentUpon>波兰阿里狗审核体积.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\搜索货源.aspx.cs">
+      <DependentUpon>搜索货源.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\搜索货源.aspx.designer.cs">
+      <DependentUpon>搜索货源.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗更新模版.aspx.cs">
+      <DependentUpon>阿里狗更新模版.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗更新模版.aspx.designer.cs">
+      <DependentUpon>阿里狗更新模版.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\翻译成印尼语.aspx.cs">
+      <DependentUpon>翻译成印尼语.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\翻译成印尼语.aspx.designer.cs">
+      <DependentUpon>翻译成印尼语.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗订单查货源.aspx.cs">
+      <DependentUpon>阿里狗订单查货源.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗订单查货源.aspx.designer.cs">
+      <DependentUpon>阿里狗订单查货源.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗拉黑链接.aspx.cs">
+      <DependentUpon>阿里狗拉黑链接.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗拉黑链接.aspx.designer.cs">
+      <DependentUpon>阿里狗拉黑链接.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\阿里狗找货源.aspx.cs">
+      <DependentUpon>阿里狗找货源.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\阿里狗找货源.aspx.designer.cs">
+      <DependentUpon>阿里狗找货源.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\财务表补充SKUID和运营编码.aspx.cs">
+      <DependentUpon>财务表补充SKUID和运营编码.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\财务表补充SKUID和运营编码.aspx.designer.cs">
+      <DependentUpon>财务表补充SKUID和运营编码.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\POD店铺审核.aspx.cs">
+      <DependentUpon>POD店铺审核.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\POD店铺审核.aspx.designer.cs">
+      <DependentUpon>POD店铺审核.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\仓库.aspx.cs">
+      <DependentUpon>仓库.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\仓库.aspx.designer.cs">
+      <DependentUpon>仓库.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\上架补充SKU.aspx.cs">
+      <DependentUpon>上架补充SKU.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\上架补充SKU.aspx.designer.cs">
+      <DependentUpon>上架补充SKU.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\重新采购无货订单.aspx.cs">
+      <DependentUpon>重新采购无货订单.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\重新采购无货订单.aspx.designer.cs">
+      <DependentUpon>重新采购无货订单.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\找货源.aspx.cs">
+      <DependentUpon>找货源.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\找货源.aspx.designer.cs">
+      <DependentUpon>找货源.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\初次入仓采购.aspx.cs">
+      <DependentUpon>初次入仓采购.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\初次入仓采购.aspx.designer.cs">
+      <DependentUpon>初次入仓采购.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\me\长期入仓采购.aspx.cs">
+      <DependentUpon>长期入仓采购.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\me\长期入仓采购.aspx.designer.cs">
+      <DependentUpon>长期入仓采购.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\see.aspx.cs">
+      <DependentUpon>see.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\see.aspx.designer.cs">
+      <DependentUpon>see.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\SKU优化停售_管理员页面.aspx.cs">
+      <DependentUpon>SKU优化停售_管理员页面.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\tb\SKU优化停售_管理员页面.aspx.designer.cs">
+      <DependentUpon>SKU优化停售_管理员页面.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\产品利润表_印尼_管理员.aspx.cs">
+      <DependentUpon>产品利润表_印尼_管理员.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\tb\产品利润表_印尼_管理员.aspx.designer.cs">
+      <DependentUpon>产品利润表_印尼_管理员.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\印尼出单数据_转_泰国广告测品.aspx.cs">
+      <DependentUpon>印尼出单数据_转_泰国广告测品.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\tb\印尼出单数据_转_泰国广告测品.aspx.designer.cs">
+      <DependentUpon>印尼出单数据_转_泰国广告测品.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\头程物流价格_运营.aspx.cs">
+      <DependentUpon>头程物流价格_运营.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\头程物流价格_运营.aspx.designer.cs">
+      <DependentUpon>头程物流价格_运营.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\广告测品出单数据分析_管理员.aspx.cs">
+      <DependentUpon>广告测品出单数据分析_管理员.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\tb\广告测品出单数据分析_管理员.aspx.designer.cs">
+      <DependentUpon>广告测品出单数据分析_管理员.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\销售状态_库存量_管理员页面.aspx.cs">
+      <DependentUpon>销售状态_库存量_管理员页面.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\tb\销售状态_库存量_管理员页面.aspx.designer.cs">
+      <DependentUpon>销售状态_库存量_管理员页面.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="csvhelp.cs" />
+    <Compile Include="Dataset.cs" />
+    <Compile Include="fc.aspx.cs">
+      <DependentUpon>fc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="fc.aspx.designer.cs">
+      <DependentUpon>fc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="jj.aspx.cs">
+      <DependentUpon>jj.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jj.aspx.designer.cs">
+      <DependentUpon>jj.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="out2.aspx.cs">
+      <DependentUpon>out2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="out2.aspx.designer.cs">
+      <DependentUpon>out2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="out.aspx.cs">
+      <DependentUpon>out.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="out.aspx.designer.cs">
+      <DependentUpon>out.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pinpaiwhite.aspx.cs">
+      <DependentUpon>pinpaiwhite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pinpaiwhite.aspx.designer.cs">
+      <DependentUpon>pinpaiwhite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pinpai.aspx.cs">
+      <DependentUpon>pinpai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pinpai.aspx.designer.cs">
+      <DependentUpon>pinpai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DT.aspx.cs">
+      <DependentUpon>DT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DT.aspx.designer.cs">
+      <DependentUpon>DT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pm.aspx.cs">
+      <DependentUpon>pm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pm.aspx.designer.cs">
+      <DependentUpon>pm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pipei.aspx.cs">
+      <DependentUpon>pipei.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pipei.aspx.designer.cs">
+      <DependentUpon>pipei.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pz.aspx.cs">
+      <DependentUpon>pz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pz.aspx.designer.cs">
+      <DependentUpon>pz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jyc.aspx.cs">
+      <DependentUpon>jyc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jyc.aspx.designer.cs">
+      <DependentUpon>jyc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="addyjz.aspx.cs">
+      <DependentUpon>addyjz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addyjz.aspx.designer.cs">
+      <DependentUpon>addyjz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="uplb.aspx.cs">
+      <DependentUpon>uplb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="uplb.aspx.designer.cs">
+      <DependentUpon>uplb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="zdyjz.aspx.cs">
+      <DependentUpon>zdyjz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="zdyjz.aspx.designer.cs">
+      <DependentUpon>zdyjz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mb.aspx.cs">
+      <DependentUpon>mb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mb.aspx.designer.cs">
+      <DependentUpon>mb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="access_sql.cs" />
+    <Compile Include="b.aspx.cs">
+      <DependentUpon>b.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="b.aspx.designer.cs">
+      <DependentUpon>b.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="addother.aspx.cs">
+      <DependentUpon>addother.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addother.aspx.designer.cs">
+      <DependentUpon>addother.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="left.ascx.cs">
+      <DependentUpon>left.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="left.ascx.designer.cs">
+      <DependentUpon>left.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YGL.aspx.cs">
+      <DependentUpon>YGL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YGL.aspx.designer.cs">
+      <DependentUpon>YGL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="other.aspx.cs">
+      <DependentUpon>other.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="other.aspx.designer.cs">
+      <DependentUpon>other.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="works.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="cg\back\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51303</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44367/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

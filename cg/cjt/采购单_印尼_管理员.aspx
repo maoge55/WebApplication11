@@ -1,0 +1,355 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="采购单_印尼_管理员.aspx.cs" Inherits="WebApplication11.cg.cjt.采购单_印尼_管理员" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>采购单_印尼_管理员</title>
+    <style>
+        .ttt {
+            width: 100%;
+        }
+
+            .ttt tr {
+            }
+
+                .ttt tr td {
+                    border: 1px solid #000000;
+                    padding: 5px;
+                }
+
+        .ttta {
+            width: 100%;
+        }
+
+            .ttta tr td {
+                border: 1px solid #37cbc5;
+                padding: 5px;
+            }
+
+        .bbb {
+            font-weight: bold;
+        }
+
+        .butt {
+            padding: 0 50px;
+        }
+
+        .anniu1 {
+            border: 1px red solid;
+        }
+    </style>
+    <script>
+     
+
+
+        // 复制URL函数保持不变
+        function copyUrl(myurl) {
+            var Url2 = document.getElementById(myurl);
+            Url2.select();
+            document.execCommand("Copy");
+        }
+
+        function checkAll(obj) {
+            var items = document.querySelectorAll("input[id*='chkItem']");
+            for (var i = 0; i < items.length; i++) {
+                items[i].checked = obj.checked;
+            }
+        }
+
+  
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+      
+            <div>
+                <h3>当前页面【<span style="color: #37cbc5">采购单_印尼_管理员</span>】</h3>
+
+                <h2 style="color: blue">
+                    <asp:Literal ID="lits" runat="server"></asp:Literal></h2>
+            </div>
+            <div>
+
+                输入商家编码：
+                <asp:TextBox ID="txtsjbm" runat="server" ValidationGroup="searchGroup"></asp:TextBox>
+                <asp:RequiredFieldValidator 
+                    ID="rfvSjbm" 
+                    runat="server" 
+                    ControlToValidate="txtsjbm"
+                    ErrorMessage="* 必须输入商家编码"
+                    ForeColor="Red"
+                    Display="Dynamic"
+                    ValidationGroup="searchGroup">
+                </asp:RequiredFieldValidator>
+                输入浏览器名称: 
+                 <asp:TextBox ID="txtBName" runat="server" ValidationGroup="searchGroup"></asp:TextBox>
+            &nbsp;
+                 采购单状态：
+                <asp:DropDownList ID="ddlStatus" runat="server" CssClass="status-filter">
+                    <asp:ListItem Value="待生成采购单">待生成采购单</asp:ListItem>
+                     <asp:ListItem Value="已生成采购单待采购">已生成采购单待采购</asp:ListItem>
+                    <asp:ListItem Value="-1">全部状态</asp:ListItem>
+                    <asp:ListItem Value="已下单">已下单</asp:ListItem>
+                     <asp:ListItem Value="放弃采购">放弃采购</asp:ListItem>
+                       <asp:ListItem Value="完成采购">完成采购</asp:ListItem>
+                </asp:DropDownList>
+                &nbsp;
+                    需采购状态：
+            <asp:DropDownList ID="ddlNeedPurchase" runat="server" ValidationGroup="searchGroup">
+                <asp:ListItem Value="-1">全部</asp:ListItem>
+                <asp:ListItem Value="1">需采购</asp:ListItem>
+                <asp:ListItem Value="0">不需采购</asp:ListItem>
+            </asp:DropDownList>
+              <asp:Button ID="Button1" runat="server" 
+                    Text="查找" 
+                    BackColor="Red" 
+                    ForeColor="White" 
+                    OnClick="Button1_Click" 
+                    ValidationGroup="searchGroup" />
+
+                <asp:Button ID="Button2" runat="server" ForeColor="Blue" OnClientClick="JavaScript:return confirm('确定保存整页吗？');" Text="保存整页" OnClick="Button2_Click1" />
+
+                <br />
+                <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+            </div>
+            <br />
+            <table class="ttt">
+                <asp:Repeater ID="rplb" runat="server" OnItemCommand="rplb_ItemCommand">
+                   <HeaderTemplate>
+                    <tr>
+                        <td style="width:3%">
+                            <input type="checkbox" id="chkAll" onclick="checkAll(this)" />
+                        </td>
+                        <td colspan="4">批量操作</td>
+                        <td>
+                            <asp:DropDownList ID="ddlBatchStatus" runat="server">
+                                <asp:ListItem Value="">请选择 </asp:ListItem>
+                                <asp:ListItem Value="zyd618">zyd618</asp:ListItem>
+                                <asp:ListItem Value="id8897">id8897</asp:ListItem>
+                                <asp:ListItem Value="wzm123">wzm123</asp:ListItem>
+                                <asp:ListItem Value="cym789">cym789</asp:ListItem>
+                                <asp:ListItem Value="th8888">th8888</asp:ListItem>
+                            </asp:DropDownList>
+                        <asp:LinkButton 
+                            ID="btnApplyBatch" 
+                            runat="server" 
+                            CommandName="ApplyBatch" 
+                            Text="应用状态" 
+                            OnClientClick="return confirm('确定应用状态到选中行吗？');" />
+                        </td>
+                    </tr>
+                </HeaderTemplate>
+                    <ItemTemplate>
+                        <tr>
+
+                        <td style="width:3%">
+                              <asp:CheckBox ID="chkItem" runat="server" />
+                        </td>
+                            
+                            <asp:Literal ID="销售链接SKU" runat="server" Text='<%# Eval("销售链接SKU") %>' Visible="False"></asp:Literal>
+                           <td style="width: 4%; text-align: center">
+                                <%# Container.ItemIndex+1 %><br />
+
+                            </td>
+                      <td style="width: 30%; text-align: center">
+                           <img src='<%# Eval("SKU图片")%>' style="width:300px" /> 
+                          <asp:Literal ID="SKU图片" runat="server" Text='<%# Eval("SKU图片") %>' Visible="false"/>
+                         </td>
+                            <td>
+                                <table class="ttta">
+             
+      
+                                    <tr>
+                                        <td style="width: 30%" class="bbb">浏览器名称</td>
+                                        <td><%# Eval("浏览器店铺名") %></td>
+
+                                    </tr>
+    
+                                    <tr>
+                                        <td style="width: 30%" class="bbb">商家编码</td>
+                                        <td><%# Eval("商家编码") %></td>
+
+                                    </tr>
+                                          <tr>
+                                        <td style="width: 30%" class="bbb">标题</td>
+                                        <td><%# Eval("销售链接产品标题") %></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 30%" class="bbb">货源链接产品标题</td>
+                                        <td><%# Eval("货源链接产品标题") %></td>
+                                        <asp:Literal ID="货源链接产品标题" runat="server" Text='<%# Eval("货源链接产品标题") %>' Visible="false"/>
+                                    </tr>
+                                    
+                                      <tr>
+                                        <td style="width: 30%" class="bbb">销售链接ItemID</td>
+                                        <td><%# Eval("销售链接ItemID") %></td>
+                                          <asp:Literal ID="销售链接ItemID" runat="server" Text='<%# Eval("销售链接ItemID") %>' Visible="false"/>
+                                    </tr>
+                                    
+                         
+                                       <tr>
+                                           <td style="width: 30%" class="bbb">SKU</td> 
+                                           <td><%# Eval("销售链接SKU") %></td>
+                                        </tr>
+                                                                        
+                         
+                                       <tr>
+                                           <td style="width: 30%" class="bbb">系统编码</td> 
+                                           <td><%# Eval("系统编码") %></td>
+                                        </tr>
+                                      <tr>
+                                           <td style="width: 30%" class="bbb">7天总销量</td> 
+                                           <td><%# Eval("该SKU7天总销量") %></td>
+                                        </tr>
+                                       <tr>
+                                           <td style="width: 30%" class="bbb">14天总销量</td> 
+                                           <td><%# Eval("该SKU14天总销量") %></td>
+                                        </tr>
+                                        <tr>
+                                           <td style="width: 30%" class="bbb">30天总销量</td> 
+                                           <td><%# Eval("该SKU30天总销量") %></td>
+                                        </tr>
+                                        <tr>
+                                           <td style="width: 30%" class="bbb">在仓数量</td> 
+                                           <td><%# Eval("实际在仓数量") %></td>
+                                        </tr>
+                                        <tr>
+                                           <td style="width: 30%" class="bbb">在途数量</td> 
+                                           <td><%# Eval("实际在途总数") %></td>
+                                        </tr>
+                                                                <tr>
+                                           <td style="width: 30%" class="bbb">该SKU需维持在仓在途数量</td> 
+                                           <td><%# Eval("该SKU需维持在仓在途数量") %></td>
+                                        </tr>
+                                    <tr>
+                                        <td style="width: 30%" class="bbb">1688产品链接</td>
+                                        <td><a href="<%# Eval("1688产品链接") %>" target="_blank">打开网址</a>&nbsp;&nbsp;
+                                            <input type="text" value='<%# Eval("1688产品链接") %>' style="width: 20px" id="url<%# Container.ItemIndex+1 %>" />
+                                            <input type="button" class="anniu1" onclick='copyUrl("url<%# Container.ItemIndex+1 %>")' value="复制网址">
+                                            <asp:Literal ID="URL" runat="server" Text='<%# Eval("1688产品链接") %>' Visible="false"/>
+                                         </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 30%" class="bbb">1688SKU1</td>
+                                      
+                                       <td >  <asp:TextBox ID="sku1" runat="server" Text='<%# Eval("1688SKU1") %>'> </asp:TextBox></td>
+                
+                                    </tr>
+                                                                        
+                                    <tr>
+                                        <td style="width: 30%" class="bbb">1688SKU2</td>
+                                    <td ><asp:TextBox ID="sku2" runat="server" Text='<%# Eval("1688SKU2") %>'> </asp:TextBox></td>
+                                    </tr>
+                                                                        
+                                                                    
+                                    <tr>
+                                        <td style="width: 30%" class="bbb">1688采购价</td>
+                                     <td ><asp:TextBox ID="price" runat="server" Text='<%# Eval("1688价格") %>'> </asp:TextBox></td>
+                                    </tr>
+                                <tr>
+                                    <td style="width: 30%" class="bbb">该SKU需采购数量</td>
+                                       <td>
+                                            <%# GetDisplayQuantity( Eval("需采购数量")) %>
+                                         <asp:TextBox ID="xucaigoushuliang" runat="server" Text=' <%# GetDisplayQuantity( Eval("需采购数量")) %>'></asp:TextBox>
+                                       
+                                    </td>
+                                </tr>
+                                     <tr>
+                                        <td style="width: 30%" class="bbb">运营编码</td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <asp:DropDownList 
+                                                        ID="YYBM" 
+                                                        runat="server" 
+                                                        CssClass="status-filter"
+                                                        SelectedValue='<%# Eval("运营编码") %>'>
+                                                        <asp:ListItem Value="">请选择</asp:ListItem>
+                                                        <asp:ListItem Value="zyd618">zyd618</asp:ListItem>
+                                                        <asp:ListItem Value="id8897">id8897</asp:ListItem>
+                                                        <asp:ListItem Value="wzm123">wzm123</asp:ListItem>
+                                                        <asp:ListItem Value="cym789">cym789</asp:ListItem>
+                                                        <asp:ListItem Value="th8888">th8888</asp:ListItem>
+                                                    </asp:DropDownList>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                   <tr>
+                                        <td style="width: 30%" class="bbb">采购单号</td>
+                                    
+                                       <td>
+                                            <asp:TextBox ID="caigoudanhao" runat="server" 
+             Text='<%# Eval("采购单号").ToString().Replace(";", "<br/>") %>' />
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td style="width: 30%" class="bbb">采购单状态</td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <asp:DropDownList 
+                                                        ID="caigoudanzhuangtai" 
+                                                        runat="server" 
+                                                        CssClass="status-filter"
+                                                        SelectedValue='<%# Eval("采购单状态") %>'>
+                                                        
+                                                        <asp:ListItem Value="待生成采购单">待生成采购单</asp:ListItem>
+                                                        <asp:ListItem Value="已生成采购单待采购">已生成采购单待采购</asp:ListItem>
+                                                        <asp:ListItem Value="已下单">已下单</asp:ListItem>
+                                                        <asp:ListItem Value="放弃采购">放弃采购</asp:ListItem>
+                                                        <asp:ListItem Value="完成采购">完成采购</asp:ListItem>
+                                                        <asp:ListItem Value="">请选择</asp:ListItem>
+                                                    </asp:DropDownList>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                          <tr>
+                                            <td></td>
+                                            <td>
+                                                   <asp:LinkButton ID="btnzd" 
+                                                    OnClientClick="JavaScript:return confirm('确定保存？');" 
+                                                    runat="server" 
+                                                    Text="保存" 
+                                                    ForeColor="White" 
+                                                    BackColor="Green" 
+                                                    CssClass="butt" 
+                                                    CommandName="qr" 
+                                                    CommandArgument='<%# Eval("销售链接SKU") %>' />
+                                                &nbsp;&nbsp;
+                                            </td>
+                                        </tr>
+                                </table>
+
+                                
+
+                            </td>
+
+                        </tr>
+                        <tr></tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+               
+            </table>
+        <div class="pager-container">
+            <asp:Button ID="btnPrev" runat="server" Text="上一页" OnClick="btnPrev_Click" CssClass="pager-btn" />
+                <!-- 新增跳转控件 -->
+    <span style="margin:0 10px">
+        跳转至 
+        <asp:TextBox ID="txtJumpPage" runat="server" Width="50px" Text="1"></asp:TextBox>
+        <asp:Button ID="btnJump" runat="server" Text="GO" 
+                    OnClick="btnJump_Click" CssClass="pager-btn" />
+    </span>
+            <span style="margin:0 10px">
+                <asp:Literal ID="litCurrentPage" runat="server" /> /
+                <asp:Literal ID="litPageInfo" runat="server"></asp:Literal>
+                <asp:Literal ID="litTotalPages" runat="server" />
+            </span>
+            <asp:Button ID="btnNext" runat="server" Text="下一页" OnClick="btnNext_Click" CssClass="pager-btn" />
+        </div>
+    </form>
+</body>
+</html>
