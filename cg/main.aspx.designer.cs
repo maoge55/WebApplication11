@@ -366,13 +366,13 @@ namespace WebApplication11.cg
         protected global::System.Web.UI.HtmlControls.HtmlAnchor 货源补充体积_重量_包装等;
 
         /// <summary>
-        /// 采购单_印尼_管理员 控件。
+        /// 采购单_印尼_管理员_新 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor 采购单_印尼_管理员;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor 采购单_印尼_管理员_新;
 
         /// <summary>
         /// 采购单_印尼_采购员 控件。

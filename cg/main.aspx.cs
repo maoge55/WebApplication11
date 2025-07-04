@@ -95,7 +95,7 @@ namespace WebApplication11.cg
                     销量和库存表.Visible = true;
                     点击任务表.Visible = true;
                     货源补充体积_重量_包装等.Visible = true;
-                    采购单_印尼_管理员.Visible = true;
+                    采购单_印尼_管理员_新.Visible = true;
                     采购单_印尼_采购员.Visible = true;
 
                     采购单_泰国_管理员.Visible = true;
