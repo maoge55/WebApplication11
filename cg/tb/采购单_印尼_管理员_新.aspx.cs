@@ -187,11 +187,7 @@ namespace WebApplication11.cg.tb
                 CalculatedData AS (
                     SELECT *,
                         -- 计算自动备货量
-                        CASE 
-                            WHEN SKU28dayamount_id > 0 
-                            THEN SKU7dayamount_id * SKU14dayamount_id * 2.0 / SKU28dayamount_id * 5 
-                            ELSE 0 
-                        END as auto_stock_quantity                   -- SkuID在途在仓备货量_自动计算
+                        SKU7dayamount_id * 5 as auto_stock_quantity                   -- SkuID在途在仓备货量_自动计算
                     FROM SkuData
                 ),
                 FinalCalculated AS (
