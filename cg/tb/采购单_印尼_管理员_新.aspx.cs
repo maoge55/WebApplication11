@@ -108,11 +108,11 @@ namespace WebApplication11.cg.tb
                 PurchaseData AS (
                     -- 采购单数量统计子查询
                     SELECT 
-                        skuid,
+                        skuid_id,
                         ISNULL(SUM(shijicaigoushuliang), 0) as total_purchase_quantity
                     FROM {TABLE_CAIGOUDAN} 
                     WHERE status = '完成采购'
-                    GROUP BY skuid
+                    GROUP BY skuid_id
                 ),
                 LogisticsData AS (
                     -- 头程物流发出数量统计子查询
@@ -179,7 +179,7 @@ namespace WebApplication11.cg.tb
                     INNER JOIN {TABLE_S1688_ORDER} s1688 ON psw.SkuID_1688 = s1688.Skuid
                     LEFT JOIN {TABLE_SHOPEE_STOCK} ss ON so.SKUID = ss.skuid
                     LEFT JOIN SalesData sd ON so.SKUID = sd.SKUID
-                    LEFT JOIN PurchaseData pd ON (pd.skuid = s1688.Skuid OR (pd.skuid IS NULL AND s1688.Skuid IS NULL))
+                    LEFT JOIN PurchaseData pd ON pd.skuid_id = so.SKUID
                     LEFT JOIN LogisticsData ld ON ld.haiwaicangxitongbianma = psw.haiwaicangxitongbianma
                     WHERE {whereCondition}
                     GROUP BY so.SKUID, s1688.Skuid, psw.haiwaicangxitongbianma
@@ -558,12 +558,13 @@ namespace WebApplication11.cg.tb
                 
                 bool success1 = access_sql.ExecSql(updateShopeeOrderSql);
 
-                // 使用MERGE语法插入/更新caigoudan表（考虑skuid_1688可能为空的情况）
+                // 使用MERGE语法插入/更新caigoudan表
                 string skuidValue = string.IsNullOrWhiteSpace(skuid_1688) ? "NULL" : $"'{skuid_1688.Replace("'", "''")}'";
                 string mergeCaigoudanSql = $@"
                     MERGE {TABLE_CAIGOUDAN} AS target
                     USING (SELECT 
                         '{frontendCaigoudanhao.Replace("'", "''")}' as caigoudanhao, 
+                        '{skuid.Replace("'", "''")}' as skuid_id, 
                         {skuidValue} as skuid,
                         {purchaseQuantity} as xucaigoushuliang,
                         '{yybm.Replace("'", "''")}' as YYBM,
@@ -574,11 +575,12 @@ namespace WebApplication11.cg.tb
                         {jiage_1688} as danjia
                     ) AS source
                     ON target.caigoudanhao = source.caigoudanhao AND 
-                       (target.skuid = source.skuid OR (target.skuid IS NULL AND source.skuid IS NULL))
+                       target.skuid_id = source.skuid_id
                     WHEN MATCHED THEN
                         UPDATE SET 
                             xucaigoushuliang = source.xucaigoushuliang,
                             YYBM = source.YYBM,
+                            skuid = source.skuid,
                             status = source.status,
                             offerid = source.offerid,
                             sku1 = source.sku1,
@@ -586,8 +588,8 @@ namespace WebApplication11.cg.tb
                             danjia = source.danjia,
                             update_time = GETDATE()
                     WHEN NOT MATCHED THEN
-                        INSERT (xucaigoushuliang, YYBM, caigoudanhao, status, offerid, skuid, sku1, sku2, danjia,update_time,upload_time)
-                        VALUES (source.xucaigoushuliang, source.YYBM, source.caigoudanhao, source.status, 
+                        INSERT (xucaigoushuliang, skuid_id, YYBM, caigoudanhao, status, offerid, skuid, sku1, sku2, danjia,update_time,upload_time)
+                        VALUES (source.xucaigoushuliang, source.skuid_id, source.YYBM, source.caigoudanhao, source.status, 
                                 source.offerid, source.skuid, source.sku1, source.sku2, source.danjia,GETDATE(),GETDATE());";
 
                 bool success2 = access_sql.ExecSql(mergeCaigoudanSql);
