@@ -179,7 +179,6 @@
     <Content Include="cg\cjt\采购单_印尼_采购员.aspx" />
     <Content Include="cg\cjt\采购单_泰国_管理员.aspx" />
     <Content Include="cg\cjt\采购单_泰国_采购员.aspx" />
-    <Content Include="cg\cjt\采购订单补充资料.aspx" />
     <Content Include="cg\cjt\采购销售海外仓数据匹配.aspx" />
     <Content Include="cg\cjt\采集数据_1688_管理员.aspx" />
     <Content Include="cg\cjt\采集数据_1688_运营.aspx" />
@@ -250,6 +249,7 @@
     <Content Include="cg\tb\广告测品出单数据分析_管理员.aspx" />
     <Content Include="cg\tb\采购单_印尼_管理员_新.aspx" />
     <Content Include="cg\tb\采购单_印尼_采购员_新.aspx" />
+    <Content Include="cg\tb\采购订单补充资料.aspx" />
     <Content Include="cg\tb\销售状态_库存量_管理员页面.aspx" />
     <Content Include="fc.aspx" />
     <Content Include="Global.asax" />
@@ -377,13 +377,6 @@
     </Compile>
     <Compile Include="cg\cjt\采购单_泰国_采购员.aspx.designer.cs">
       <DependentUpon>采购单_泰国_采购员.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="cg\cjt\采购订单补充资料.aspx.cs">
-      <DependentUpon>采购订单补充资料.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="cg\cjt\采购订单补充资料.aspx.designer.cs">
-      <DependentUpon>采购订单补充资料.aspx</DependentUpon>
     </Compile>
     <Compile Include="cg\cjt\采购销售海外仓数据匹配.aspx.cs">
       <DependentUpon>采购销售海外仓数据匹配.aspx</DependentUpon>
@@ -873,6 +866,13 @@
     </Compile>
     <Compile Include="cg\tb\采购单_印尼_采购员_新.aspx.designer.cs">
       <DependentUpon>采购单_印尼_采购员_新.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\采购订单补充资料.aspx.cs">
+      <DependentUpon>采购订单补充资料.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\tb\采购订单补充资料.aspx.designer.cs">
+      <DependentUpon>采购订单补充资料.aspx</DependentUpon>
     </Compile>
     <Compile Include="cg\tb\销售状态_库存量_管理员页面.aspx.cs">
       <DependentUpon>销售状态_库存量_管理员页面.aspx</DependentUpon>

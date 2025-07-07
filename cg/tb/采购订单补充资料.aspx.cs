@@ -90,6 +90,9 @@ namespace WebApplication11.cg.cjt
             {
                 // 加载物流商品种编号数据
                 LoadLogisticsProductTypes();
+                
+                // 初始化批量应用下拉框
+                LoadBatchDropdowns();
 
                 string skuID = Request.QueryString["SKU_ID"];
                 string OfferID = Request.QueryString["OfferID"];
@@ -284,6 +287,11 @@ namespace WebApplication11.cg.cjt
                     case "补充包装盒链接":
                         whereCondition += @" AND ((p.baozhuanghe1688lianjie1 IS NULL OR p.baozhuanghe1688lianjie1 = '') 
                           OR (p.baozhuanghe1688lianjie2 IS NULL OR p.baozhuanghe1688lianjie2 = ''))";
+                        break;
+                    case "补充物流商品种编号":
+                        whereCondition += @" AND ((p.logistics_product_type_code_pt_gd IS NULL OR p.logistics_product_type_code_pt_gd = '') 
+                          OR (p.logistics_product_type_code_gd_id IS NULL OR p.logistics_product_type_code_gd_id = '') 
+                          OR (p.logistics_product_type_code_gd_th IS NULL OR p.logistics_product_type_code_gd_th = ''))";
                         break;
                 }
             }
@@ -727,6 +735,28 @@ namespace WebApplication11.cg.cjt
             rplb.ItemDataBound += Rplb_ItemDataBound;
         }
 
+        private void LoadBatchDropdowns()
+        {
+            // 清空批量应用下拉框
+            ddlBatchPtGd.Items.Clear();
+            ddlBatchGdId.Items.Clear();
+            ddlBatchGdTh.Items.Clear();
+
+            // 添加默认选项
+            ddlBatchPtGd.Items.Add(new ListItem("请选择", ""));
+            ddlBatchGdId.Items.Add(new ListItem("请选择", ""));
+            ddlBatchGdTh.Items.Add(new ListItem("请选择", ""));
+
+            // 添加物流商品种编号选项
+            foreach (DataRow row in LogisticsProductTypes.Rows)
+            {
+                string code = row["logistics_product_type_code"].ToString();
+                ddlBatchPtGd.Items.Add(new ListItem(code, code));
+                ddlBatchGdId.Items.Add(new ListItem(code, code));
+                ddlBatchGdTh.Items.Add(new ListItem(code, code));
+            }
+        }
+
         private void Rplb_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -806,6 +836,9 @@ namespace WebApplication11.cg.cjt
             // 从控件获取当前的筛选条件
             string searchValue = txtsjbm.Text.Trim();
             string status = ddlStatus.SelectedValue;
+
+            // 重新加载批量应用下拉框
+            LoadBatchDropdowns();
 
             // 判断是搜索运营编码还是SKU ID
             if (IsSkuIdSearch(searchValue))
