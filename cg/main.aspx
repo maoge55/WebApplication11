@@ -136,7 +136,7 @@
                         <a href="/cg/cjt/点击任务表.aspx" runat="server" id="点击任务表" visible="false" class="a9" target="_blank">36-点击任务表</a><br />
                         <a href="/cg/cjt/采购订单补充资料.aspx" runat="server" id="货源补充体积_重量_包装等" visible="false" class="a9" target="_blank">37-货源补充体积_重量_包装等</a><br />
                         <a href="/cg/tb/采购单_印尼_管理员_新.aspx" runat="server" id="采购单_印尼_管理员_新" visible="false" class="a9" target="_blank">38-采购单_印尼_管理员</a><br />
-                        <a href="/cg/cjt/采购单_印尼_采购员.aspx" runat="server" id="采购单_印尼_采购员" visible="false" class="a9" target="_blank">39-采购单_印尼_采购员</a><br />
+                        <a href="/cg/tb/采购单_印尼_采购员_新.aspx" runat="server" id="采购单_印尼_采购员" visible="false" class="a9" target="_blank">39-采购单_印尼_采购员</a><br />
 
 
                         <a href="/cg/cjt/采购单_泰国_管理员.aspx" runat="server" id="采购单_泰国_管理员" visible="false" class="a9" target="_blank">40-采购单_泰国_管理员</a><br />
