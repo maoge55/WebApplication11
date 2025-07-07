@@ -291,7 +291,7 @@
                                 <tr>
                                     <td class="bbb">1688采购链接</td>
                                     <td>
-                                        <a href="https://detail.1688.com/offer/<%# Eval("offerid") %>" target="_blank">
+                                        <a href="https://detail.1688.com/offer/<%# Eval("offerid") %>.html" target="_blank">
                                             https://detail.1688.com/offer/<%# Eval("offerid") %>.html
                                         </a>
                                     </td>
