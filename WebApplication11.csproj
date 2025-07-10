@@ -248,6 +248,7 @@
     <Content Include="cg\tb\头程物流价格_运营.aspx" />
     <Content Include="cg\tb\广告测品出单数据分析_管理员.aspx" />
     <Content Include="cg\tb\本地收货登记.aspx" />
+    <Content Include="cg\tb\残次品退货.aspx" />
     <Content Include="cg\tb\采购单_印尼_管理员_新.aspx" />
     <Content Include="cg\tb\采购单_印尼_采购员_新.aspx" />
     <Content Include="cg\tb\采购订单补充资料.aspx" />
@@ -860,6 +861,13 @@
     </Compile>
     <Compile Include="cg\tb\本地收货登记.aspx.designer.cs">
       <DependentUpon>本地收货登记.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\残次品退货.aspx.cs">
+      <DependentUpon>残次品退货.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\tb\残次品退货.aspx.designer.cs">
+      <DependentUpon>残次品退货.aspx</DependentUpon>
     </Compile>
     <Compile Include="cg\tb\采购单_印尼_管理员_新.aspx.cs">
       <DependentUpon>采购单_印尼_管理员_新.aspx</DependentUpon>
