@@ -128,7 +128,7 @@
                         <a href="/cg/cjt/广告测品订单.aspx" runat="server" id="广告测品订单" visible="false" class="a9" target="_blank">28-广告测品订单</a><br />
                         <a href="/cg/tb/本地收货登记.aspx" runat="server" id="本地收货登记" visible="false" class="a9" target="_blank">29-本地收货登记</a><br />
                         <a href="/cg/tb/残次品退货.aspx" runat="server" id="残次品退换货" visible="false" class="a9" target="_blank">30-残次品退换货</a><br />
-                        <a href="/cg/cjt/头程物流表.aspx" runat="server" id="头程物流表" visible="false" class="a9" target="_blank">31-头程物流表</a><br />
+                        <a href="/cg/cjt/头程物流表.aspx" runat="server" id="头程物流表" visible="false" class="a9" target="_blank">31-头程物流登记</a><br />
                         <a href="/cg/cjt/采购销售海外仓数据匹配.aspx" runat="server" id="采购销售海外仓数据匹配" visible="false" class="a9" target="_blank">32-采购_销售_海外仓数据匹配</a><br />
                         <a href="/cg/cjt/1688采购记录检索.aspx" runat="server" id="_1688采购记录检索" visible="false" class="a9" target="_blank">33-1688采购记录检索</a><br />
                         <a href="/cg/cjt/库存计划表.aspx" runat="server" id="库存计划表" visible="false" class="a9" target="_blank">34-库存计划表</a><br />
