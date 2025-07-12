@@ -150,6 +150,8 @@
                         <a href="/cg/tb/广告测品出单数据分析_管理员.aspx" runat="server" id="广告测品出单数据分析_管理员" visible="false" class="a9" target="_blank">47-广告测品出单数据分析_管理员</a><br />
                         <a href="/cg/tb/头程物流价格_运营.aspx" runat="server" id="头程物流价格_运营" visible="false" class="a9" target="_blank">48-头程物流价格_运营</a><br />
                         <a href="/cg/tb/产品利润表_印尼_管理员.aspx" runat="server" id="产品利润表_印尼_管理员" visible="false" class="a9" target="_blank">49-产品利润表_印尼_管理员</a><br />
+                        <a href="/cg/tb/列名总表_管理员.aspx" runat="server" id="列名总表_管理员" visible="false" class="a9" target="_blank">50-列名总表_管理员</a><br />
+
                         
                     </div>
                     <br />

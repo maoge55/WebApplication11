@@ -1,0 +1,551 @@
+﻿using Microsoft.Office.Interop.Excel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebApplication11.cg.tb
+{
+    public partial class 列名总表_管理员 : System.Web.UI.Page
+    {
+        public string u = "";
+        public string p = "";
+        public string uid = "";
+
+        // 保存数据模型
+        private class ItemSaveData
+        {
+            public string id { get; set; }
+            public string calculation_rule { get; set; }
+            public string page_name { get; set; }
+            public string data_source { get; set; }
+            public string is_basic_data { get; set; }
+            public bool IsValid { get; set; }
+            public string ErrorMessage { get; set; }
+            public string file_xls { get; set; }
+        }
+
+        // 表名变量
+        private const string TABLE_CAIGOUDAN = "caigoudan";
+        private const string TABLE_SHOPEE_ORDER = "ShopeeOrder";
+        private const string TABLE_PURCHASE_SALES_WAREHOUSE = "Purchase_Sales_Warehouse";
+        private const string TABLE_S1688_ORDER = "S1688Order";
+
+        // 分页相关属性
+        public int CurrentPage
+        {
+            get { return ViewState["CurrentPage"] != null ? (int)ViewState["CurrentPage"] : 1; }
+            set { ViewState["CurrentPage"] = value; }
+        }
+
+        public int PageSize = 10; // 1页只展示1个caigoudanhao下的数据
+
+        public int TotalPages
+        {
+            get { return ViewState["TotalPages"] != null ? (int)ViewState["TotalPages"] : 0; }
+            set { ViewState["TotalPages"] = value; }
+        }
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // 验证登录状态
+            if (!access_sql.yzdlcg())
+            {
+                Response.Redirect("/cg/clogin.aspx");
+            }
+            else
+            {
+                u = HttpContext.Current.Request.Cookies["cu"].Value;
+                p = HttpContext.Current.Request.Cookies["cp"].Value;
+                uid = HttpContext.Current.Request.Cookies["cuid"].Value;
+
+                // 检查用户权限（采购员权限）
+                if (uid != "8" && uid != "9" && uid != "18" && uid != "19" && uid != "12" && uid != "6")
+                {
+                    Response.Redirect("/cg/clogin.aspx");
+                }
+            }
+
+            if (!IsPostBack)
+            {
+
+            }
+        }
+
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            CurrentPage = 1;
+            BindData();
+        }
+
+        private void loadData()
+        {
+            try
+            {
+                string nameV = ddlName.SelectedValue;
+                string statusV = ddlStauts.SelectedValue;
+                string findContentV = txtFind.Text;
+
+                string whereCondition = $" 1=1 ";
+
+                if (!string.IsNullOrEmpty(nameV))
+                {
+                    if (nameV == "有")
+                    {
+                        whereCondition += $" AND page_name is not null ";
+                    }
+                    else
+                    {
+                        whereCondition += $" AND page_name is null";
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(statusV))
+                {
+                    if (statusV == "有")
+                    {
+                        whereCondition += $" AND creation_status is not null ";
+                    }
+                    else
+                    {
+                        whereCondition += $" AND creation_status is null";
+                    }
+                    //whereCondition += $" AND creation_status LIKE '%{statusV}%'";
+                }
+                if (!string.IsNullOrEmpty(findContentV))
+                {
+                    whereCondition += $" AND (page_name LIKE '%{findContentV}%' or id LIKE '%{findContentV}%' or column_name LIKE '%{findContentV}%' or table_name LIKE '%{findContentV}%')";
+                }
+                int bPage = (CurrentPage - 1) * PageSize + 1;
+                int ePage = bPage + PageSize - 1;
+                string sql = $@"select * from(
+                    SELECT *,ROW_NUMBER() OVER (ORDER BY c.page_name DESC) AS RowNum FROM ColumnMetaAdmin c
+                    WHERE {whereCondition} ) bb WHERE RowNum BETWEEN " + bPage + " AND " + ePage;
+                string sqlCount = $@"SELECT count(*) num FROM ColumnMetaAdmin c
+                    WHERE {whereCondition}  ";
+
+                DataSet ds = access_sql.GreatDs(sql);
+                System.Data.DataTable dt = ds.Tables[0];
+                DataSet dsCount = access_sql.GreatDs(sqlCount);
+                System.Data.DataTable dtCount = dsCount.Tables[0];
+
+                if (dt.Rows.Count <= 0)
+                {
+                    rplb.DataSource = null;
+                    rplb.DataBind();
+                    lits.Text = "未找到符合条件的数据";
+                    //UpdatePagingInfo();
+                    return;
+                }
+
+                rplb.DataSource = dt;
+                rplb.DataBind();
+                int pages = int.Parse(dtCount.Rows[0]["NUM"].ToString()) / PageSize;
+                if (pages == 0)
+                {
+                    TotalPages = 1;
+                }
+                else
+                {
+                    TotalPages = pages;
+                }
+
+                //if (TotalPages > 0 && CurrentPage <= TotalPages)
+                //{
+                //    CurrentCaigoudanhao = caigoudanhaoList[CurrentPage - 1];
+                //}
+                //else
+                //{
+                //    CurrentCaigoudanhao = "";
+                //}
+            }
+            catch (Exception ex)
+            {
+                lits.Text = "查询列名总表_管理员失败：" + ex.Message;
+            }
+        }
+        private void BindData()
+        {
+            loadData();
+            UpdatePagingInfo();
+        }
+
+        private void UpdatePagingInfo()
+        {
+            string pageInfo = $"第 {CurrentPage} 页 / 共 {TotalPages} 页";
+            litPageInfo.Text = pageInfo;
+
+            btnPrev.Enabled = CurrentPage > 1;
+            btnNext.Enabled = CurrentPage < TotalPages;
+
+            // 设置跳转输入框显示当前页码
+            txtJumpPage.Text = CurrentPage.ToString();
+        }
+
+        protected void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                BindData();
+            }
+        }
+
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+            if (CurrentPage < TotalPages)
+            {
+                CurrentPage++;
+                BindData();
+            }
+        }
+
+        protected void btnJump_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtJumpPage.Text, out int targetPage))
+            {
+                if (targetPage >= 1 && targetPage <= TotalPages)
+                {
+                    CurrentPage = targetPage;
+                    BindData();
+                }
+                else
+                {
+                    lits.Text = $"页码超出范围，请输入 1 到 {TotalPages} 之间的数字";
+                }
+            }
+            else
+            {
+                lits.Text = "请输入有效的页码数字";
+            }
+        }
+
+
+        protected void rplb_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            string commandName = e.CommandName;
+
+            switch (commandName)
+            {
+                case "SaveItem":
+                    SaveSingleItem(e.Item);
+                    break;
+
+            }
+        }
+        private void SaveSingleItem(RepeaterItem item)
+        {
+            try
+            {
+                var saveData = ExtractItemData(item);
+                if (!saveData.IsValid)
+                {
+                    lits.Text = $"保存失败：{saveData.ErrorMessage}";
+                    return;
+                }
+
+                if (ExecuteSaveItem(saveData))
+                {
+                    BindData(); // 重新加载数据以显示最新状态
+                    lits.Text = "保存成功！";
+                }
+                else
+                {
+                    lits.Text = "保存失败：数据库更新失败";
+                }
+            }
+            catch (Exception ex)
+            {
+                lits.Text = "保存失败：" + ex.Message;
+            }
+        }
+
+        private ItemSaveData ExtractItemData(RepeaterItem item)
+        {
+            var saveData = new ItemSaveData();
+
+            try
+            {
+                // 获取隐藏字段值
+                var hidId = item.FindControl("hidId") as HiddenField;
+
+                // 获取用户输入控件
+                var ddlIsBasicData = item.FindControl("ddlIsBasicData") as DropDownList;
+                var txtDataSource = item.FindControl("txtDataSource") as System.Web.UI.WebControls.TextBox;
+                var txtPageName = item.FindControl("txtPageName") as System.Web.UI.WebControls.TextBox;
+                var txtCalculationRule = item.FindControl("txtCalculationRule") as System.Web.UI.WebControls.TextBox;
+
+                // 验证控件是否存在
+                if (hidId == null || ddlIsBasicData==null|| txtDataSource==null||
+                    txtCalculationRule == null || txtPageName == null)
+                {
+                    saveData.IsValid = false;
+                    saveData.ErrorMessage = "找不到必要的输入控件";
+                    return saveData;
+                }
+
+                // 设置数据
+                saveData.page_name = txtPageName.Text;
+                saveData.data_source = txtDataSource.Text;
+                saveData.is_basic_data = ddlIsBasicData.Text?.Trim() ?? "";
+                saveData.calculation_rule = txtCalculationRule.Text;
+                saveData.id = hidId.Value?.Trim() ?? "";
+                saveData.IsValid = true;
+                saveData.ErrorMessage = "";
+
+                return saveData;
+            }
+            catch (Exception ex)
+            {
+                saveData.IsValid = false;
+                saveData.ErrorMessage = "数据提取失败：" + ex.Message;
+                return saveData;
+            }
+        }
+        public string StrToInt(string str)
+        {
+            string result = "";
+            try
+            {
+                int num = int.Parse(str);
+                result = num + "";
+            }
+            catch (Exception e)
+            {
+                result = "0";
+            }
+            return result;
+        }
+
+        private bool ExecuteSaveItem(ItemSaveData saveData)
+        {
+            try
+            {
+                if (!saveData.IsValid)
+                {
+                    return false;
+                }
+
+                string sql = "update ColumnMetaAdmin set is_basic_data='" + saveData.is_basic_data + "',data_source='" + saveData.data_source + "',page_name='" + saveData.page_name + "',calculation_rule='" + saveData.calculation_rule + "' where id='" + saveData.id + "'";
+                access_sql.DoSql(sql);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        protected void btnSaveAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int successCount = 0;
+                int errorCount = 0;
+                var errorMessages = new List<string>();
+
+                foreach (RepeaterItem item in rplb.Items)
+                {
+                    if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+                    {
+                        var saveData = ExtractItemData(item);
+                        if (saveData.IsValid && ExecuteSaveItem(saveData))
+                        {
+                            successCount++;
+                        }
+                        else
+                        {
+                            errorCount++;
+                            if (!saveData.IsValid)
+                            {
+                                errorMessages.Add($"第{item.ItemIndex + 1}行：{saveData.ErrorMessage}");
+                            }
+                        }
+                    }
+                }
+
+                // 重新加载数据
+                BindData();
+
+                if (errorCount == 0)
+                {
+                    lits.Text = $"保存成功！共保存 {successCount} 条记录";
+                }
+                else
+                {
+                    string errorDetail = errorMessages.Count > 0 ?
+                        $"<br/>错误详情：{string.Join("<br/>", errorMessages.Take(3))}" +
+                        (errorMessages.Count > 3 ? "<br/>..." : "") : "";
+                    lits.Text = $"保存完成！成功 {successCount} 条，失败 {errorCount} 条{errorDetail}";
+                }
+            }
+            catch (Exception ex)
+            {
+                lits.Text = "保存失败：" + ex.Message;
+            }
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sqlSelect = "select count(*) from ColumnMetaAdmin where column_name='" + txtLm.Text+"'";
+                string str=access_sql.GetOneValue(sqlSelect);
+                if (str !="0")
+                {
+                    string sql = "update ColumnMetaAdmin set table_name='" + txtTa.Text + "' where column_name='" + txtLm.Text + "'";
+                    access_sql.DoSql(sql);
+                }
+                else
+                {
+                    string sql = "insert into ColumnMetaAdmin(column_name,table_name)";
+                    sql += "values('" + txtLm.Text + "','" + txtTa.Text + "')";
+                    access_sql.DoSql(sql);
+                }
+                lits.Text = "新增成功!";
+                BindData();
+            }
+            catch (Exception ex)
+            {
+                lits.Text = "保存失败：" + ex.Message;
+            }
+        }
+
+        protected void btnImport_Click(object sender, EventArgs e)
+        {
+            if (fup1.FileName != "")
+            {
+                string ext = System.IO.Path.GetExtension(fup1.FileName);
+                if (ext == ".xlsx")
+                {
+                    if (!Directory.Exists(Server.MapPath("/upload/ColumnMetaAdmin/")))
+                    {
+                        Directory.CreateDirectory(Server.MapPath("/upload/ColumnMetaAdmin/"));
+                    }
+                    string path = Server.MapPath("/upload/ColumnMetaAdmin/") + fup1.FileName;
+
+                    this.fup1.SaveAs(path);
+
+                    System.Data.DataTable dtout = ReadExcelData_(path);
+                    string table_name=txtTableName.Text;
+                    if (dtout != null && dtout.Rows.Count > 0)
+                    {
+                        DataRow dr = dtout.Rows[0];
+                        DataRow dr2 = dtout.Rows[1];
+                        int s = dr.ItemArray.Length;
+
+                        DataSet ds = access_sql.GreatDs("select column_name from ColumnMetaAdmin");
+                        System.Data.DataTable dt = ds.Tables[0];
+                        for (int i = 0; i < s; i++)
+                        {
+                            string column_name = dr[i].ToString();
+                            string page_name = dr2[i].ToString();
+                            //string sqlSelect = "select count(*) from ColumnMetaAdmin where column_name='" + column_name + "'";
+                            //string str = access_sql.GetOneValue(sqlSelect);
+                            bool johnExists = dt.AsEnumerable()
+                            .Any(row => row.Field<string>("column_name") == column_name);
+                            if (johnExists)
+                            {
+                                string sql = "update ColumnMetaAdmin set page_name='" + page_name + "',table_name='" + table_name + "' where column_name='" + column_name + "'";
+                                access_sql.DoSql(sql);
+                            }
+                            else
+                            {
+                                string sql = "insert into ColumnMetaAdmin(page_name,column_name,table_name)";
+                                sql += "values('" + page_name + "','" + column_name + "','" + table_name + "')";
+                                access_sql.DoSql(sql);
+                            }
+                        }
+                        lits.Text = "处理成功"+s+"条数据!";
+                    }
+                    BindData();
+                }
+                else
+                {
+                    lits.Text = "文件格式不对(支持xlsx)";
+
+                }
+
+            }
+            else
+            {
+                lits.Text = "请选择文件";
+
+            }
+        }
+        public static System.Data.DataTable ReadExcelData_(string filePath)
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+            try
+            {
+
+
+                using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    IWorkbook workbook = new XSSFWorkbook(file);
+                    ISheet sheet = workbook.GetSheetAt(0);
+                    if (sheet != null)
+                    {
+
+                        IRow row = sheet.GetRow(0);
+
+                        if (row != null)
+                        {
+                            for (int i = 0; i < row.LastCellNum; i++)
+                            {
+                                ICell cell = row.GetCell(i);
+                                if (cell != null)
+                                {
+
+                                    dt.Columns.Add(cell.ToString().Trim());
+                                }
+                            }
+                        }
+                        for (int rowIndex = 0; rowIndex <= sheet.LastRowNum; rowIndex++)
+                        {
+                            IRow row1 = sheet.GetRow(rowIndex);
+                            if (row1 != null)
+                            {
+                                object[] obj = new object[dt.Columns.Count];
+
+                                for (int colIndex = 0; colIndex < dt.Columns.Count; colIndex++)
+                                {
+                                    string cellValue = "";
+
+                                    ICell cell = row1.GetCell(colIndex);
+
+                                    if (cell != null)
+                                    {
+
+                                        cellValue = cell.ToString();
+
+                                    }
+
+
+                                    obj[colIndex] = cellValue;
+                                }
+                                dt.Rows.Add(obj);
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+            return dt;
+        }
+    }
+}

@@ -244,6 +244,7 @@
     <Content Include="cg\see.aspx" />
     <Content Include="cg\tb\SKU优化停售_管理员页面.aspx" />
     <Content Include="cg\tb\产品利润表_印尼_管理员.aspx" />
+    <Content Include="cg\tb\列名总表_管理员.aspx" />
     <Content Include="cg\tb\印尼出单数据_转_泰国广告测品.aspx" />
     <Content Include="cg\tb\头程物流价格_运营.aspx" />
     <Content Include="cg\tb\广告测品出单数据分析_管理员.aspx" />
@@ -834,6 +835,13 @@
     </Compile>
     <Compile Include="cg\tb\产品利润表_印尼_管理员.aspx.designer.cs">
       <DependentUpon>产品利润表_印尼_管理员.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\列名总表_管理员.aspx.cs">
+      <DependentUpon>列名总表_管理员.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\tb\列名总表_管理员.aspx.designer.cs">
+      <DependentUpon>列名总表_管理员.aspx</DependentUpon>
     </Compile>
     <Compile Include="cg\tb\印尼出单数据_转_泰国广告测品.aspx.cs">
       <DependentUpon>印尼出单数据_转_泰国广告测品.aspx</DependentUpon>

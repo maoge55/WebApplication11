@@ -108,6 +108,7 @@ namespace WebApplication11.cg
                     广告测品出单数据分析_管理员.Visible = true;
                     头程物流价格_运营.Visible = true;
                     产品利润表_印尼_管理员.Visible = true;
+                    列名总表_管理员.Visible = true;
                 }
                 if (uid == "6")
                 {
