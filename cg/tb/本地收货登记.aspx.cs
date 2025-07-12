@@ -68,7 +68,7 @@ namespace WebApplication11.cg.tb
                 uid = HttpContext.Current.Request.Cookies["cuid"].Value;
 
                 // 检查用户权限（采购员权限）
-                if (uid != "8" && uid != "9" && uid != "18" && uid != "19" && uid != "12" && uid != "6")
+                if (uid != "8" && uid != "9" && uid != "18" && uid != "19" && uid != "12" && uid != "6" && uid!="22")
                 {
                     Response.Redirect("/cg/clogin.aspx");
                 }

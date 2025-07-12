@@ -329,8 +329,10 @@ namespace WebApplication11.cg
                 {
 
 
-                    入仓产品图片视频.Visible = true;
-                    搜索货源.Visible = true;
+                    本地收货登记.Visible = true;
+                    残次品退换货.Visible = true;
+                    头程物流表.Visible = true;
+                    _1688采购记录检索.Visible = true;
 
 
                 }

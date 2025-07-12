@@ -30,7 +30,7 @@ namespace WebApplication11.cg.cjt
                 u = HttpContext.Current.Request.Cookies["cu"].Value;
                 p = HttpContext.Current.Request.Cookies["cp"].Value;
                 uid = HttpContext.Current.Request.Cookies["cuid"].Value;
-                if (uid != "6" && uid != "12" && uid != "9")
+                if (uid != "6" && uid != "12" && uid != "9" && uid!="22")
                 {
                     Response.Redirect("/cg/clogin.aspx");
                 }
