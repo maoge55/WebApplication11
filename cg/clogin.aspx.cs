@@ -53,6 +53,7 @@ namespace WebApplication11
             {
                 string pwd = access_sql.GetMD5_32(txtpwd.Text.Trim());
                 DataSet ds = access_sql.GreatDs("select * from yn_user where us='" + txtname.Text.Trim() + "' and pass='" + pwd + "'");
+                
                 if (access_sql.yzTable(ds))
                 {
                     HttpCookie u = null;
@@ -114,7 +115,7 @@ namespace WebApplication11
                     HttpContext.Current.Response.Cookies.Add(uid);
 
 
-                    if (ds.Tables[0].Rows[0]["id"].ToString() == "6" || ds.Tables[0].Rows[0]["id"].ToString() == "8" || ds.Tables[0].Rows[0]["id"].ToString() == "9" || ds.Tables[0].Rows[0]["id"].ToString() == "10" || ds.Tables[0].Rows[0]["id"].ToString() == "11" || ds.Tables[0].Rows[0]["id"].ToString() == "12" || ds.Tables[0].Rows[0]["id"].ToString() == "13" || ds.Tables[0].Rows[0]["id"].ToString() == "14" || ds.Tables[0].Rows[0]["id"].ToString() == "15" || ds.Tables[0].Rows[0]["id"].ToString() == "16" || ds.Tables[0].Rows[0]["id"].ToString() == "17" || ds.Tables[0].Rows[0]["id"].ToString() == "18" || ds.Tables[0].Rows[0]["id"].ToString() == "19" || ds.Tables[0].Rows[0]["id"].ToString() == "20" || ds.Tables[0].Rows[0]["id"].ToString() == "21")
+                    if (ds.Tables[0].Rows[0]["id"].ToString() == "6" || ds.Tables[0].Rows[0]["id"].ToString() == "8" || ds.Tables[0].Rows[0]["id"].ToString() == "9" || ds.Tables[0].Rows[0]["id"].ToString() == "10" || ds.Tables[0].Rows[0]["id"].ToString() == "11" || ds.Tables[0].Rows[0]["id"].ToString() == "12" || ds.Tables[0].Rows[0]["id"].ToString() == "13" || ds.Tables[0].Rows[0]["id"].ToString() == "14" || ds.Tables[0].Rows[0]["id"].ToString() == "15" || ds.Tables[0].Rows[0]["id"].ToString() == "16" || ds.Tables[0].Rows[0]["id"].ToString() == "17" || ds.Tables[0].Rows[0]["id"].ToString() == "18" || ds.Tables[0].Rows[0]["id"].ToString() == "19" || ds.Tables[0].Rows[0]["id"].ToString() == "22" || ds.Tables[0].Rows[0]["id"].ToString() == "21" )
                     {
                         Response.Redirect("/cg/main.aspx");
                     }

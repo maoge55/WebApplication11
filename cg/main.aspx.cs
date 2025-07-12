@@ -20,7 +20,7 @@ namespace WebApplication11.cg
                 u = HttpContext.Current.Request.Cookies["cu"].Value;
                 p = HttpContext.Current.Request.Cookies["cp"].Value;
                 uid = HttpContext.Current.Request.Cookies["cuid"].Value;
-                if (uid != "6" && uid != "8" && uid != "9" && uid != "10" && uid != "11" && uid != "12" && uid != "13" && uid != "14" && uid != "15" && uid != "16" && uid != "17" && uid != "18" && uid != "19" && uid != "20" && uid != "21")
+                if (uid != "6" && uid != "8" && uid != "9" && uid != "10" && uid != "11" && uid != "13" && uid != "14" && uid != "15" && uid != "16" && uid != "17" && uid != "18" && uid != "19" && uid != "21" && uid != "22")
                 {
                     Response.Redirect("/cg/clogin.aspx");
                 }
@@ -325,7 +325,7 @@ namespace WebApplication11.cg
 
 
                 }
-                if (uid == "21")
+                if (uid == "22")
                 {
 
 
