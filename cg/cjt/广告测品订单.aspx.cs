@@ -188,7 +188,7 @@ namespace WebApplication11.cg.cjt
                                 skuid1688 = num2; // 使用第二个13位数字作为skuid
 
 
-                                string newUrl = $"https://detail.1688.com/offer/{num2}.html";
+                                string newUrl = $"https://detail.1688.com/offer/{num1}.html";
                                 if (string.IsNullOrEmpty(y1688url))
                                     row["Y_1688url"] = newUrl;
                             }
