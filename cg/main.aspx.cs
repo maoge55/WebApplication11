@@ -326,6 +326,11 @@ namespace WebApplication11.cg
 
 
                 }
+                if (uid == "21")
+                {
+                    入仓产品图片视频.Visible = true;
+                    搜索货源.Visible = true;
+                }
                 if (uid == "22")
                 {
 
