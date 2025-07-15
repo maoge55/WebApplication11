@@ -483,6 +483,15 @@ namespace WebApplication11.cg
         protected global::System.Web.UI.HtmlControls.HtmlAnchor 列名总表_管理员;
 
         /// <summary>
+        /// 店铺资料管理_运营 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor 店铺资料管理_运营;
+
+        /// <summary>
         /// POD店铺审核 控件。
         /// </summary>
         /// <remarks>

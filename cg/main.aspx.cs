@@ -109,11 +109,10 @@ namespace WebApplication11.cg
                     头程物流价格_运营.Visible = true;
                     产品利润表_印尼_管理员.Visible = true;
                     列名总表_管理员.Visible = true;
+                    店铺资料管理_运营.Visible = true;
                 }
                 if (uid == "6")
                 {
-
-
 
 
 
@@ -148,6 +147,7 @@ namespace WebApplication11.cg
                     采集数据_1688_运营.Visible = true;
                     印尼出单数据_转_泰国广告测品.Visible = true;
                     头程物流价格_运营.Visible = true;
+                    店铺资料管理_运营.Visible = true;
                 }
                 if (uid == "8")
                 {
@@ -277,6 +277,7 @@ namespace WebApplication11.cg
                     //手动广告选品.Visible = true;
                     头程物流表.Visible = true;
                     采集数据_1688_运营.Visible = true;
+                    店铺资料管理_运营.Visible = true;
 
                 }
                 if (uid == "19")
@@ -307,6 +308,7 @@ namespace WebApplication11.cg
                     _1688采购记录检索.Visible = true;
                     货源补充体积_重量_包装等.Visible = true;
                     采集数据_1688_运营.Visible = true;
+                    店铺资料管理_运营.Visible = true;
                 }
                 if (uid == "20")
                 {
@@ -334,11 +336,13 @@ namespace WebApplication11.cg
                 if (uid == "22")
                 {
 
-
+                    入仓产品图片视频.Visible = true;
+                    搜索货源.Visible = true;
                     本地收货登记.Visible = true;
                     残次品退换货.Visible = true;
                     头程物流表.Visible = true;
                     _1688采购记录检索.Visible = true;
+                    采购销售海外仓数据匹配.Visible = true;
 
 
                 }

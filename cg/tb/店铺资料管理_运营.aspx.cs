@@ -1,4 +1,4 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using NPOI.SS.Formula.Functions;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication11.cg.tb
 {
-    public partial class 列名总表_管理员 : System.Web.UI.Page
+    public partial class 店铺资料管理_运营 : System.Web.UI.Page
     {
         public string u = "";
         public string p = "";
@@ -22,14 +22,17 @@ namespace WebApplication11.cg.tb
         private class ItemSaveData
         {
             public string id { get; set; }
-            public string calculation_rule { get; set; }
-            public string page_name { get; set; }
-            public string data_source { get; set; }
-            public string creation_status { get; set; }
+            public string Platform { get; set; }
+            public string Country { get; set; }
+            public string PingTai { get; set; }
+            public string UserName { get; set; }
+            public string Password { get; set; }
+            public string SJBM { get; set; }
+            public string YYBM { get; set; }
+            public string ProxyIP { get; set; }
             public string is_basic_data { get; set; }
             public bool IsValid { get; set; }
             public string ErrorMessage { get; set; }
-            public string file_xls { get; set; }
         }
 
         // 表名变量
@@ -91,46 +94,31 @@ namespace WebApplication11.cg.tb
         {
             try
             {
-                string nameV = ddlName.SelectedValue;
-                string statusV = ddlStauts.SelectedValue;
-                string findContentV = txtFind.Text;
+                string SJBM = txtSJBM.Text;
+                string BrowserID = txtBrowserID.Text;
+                string ProxyIP = ddlProxyIP.SelectedValue;
 
-                string whereCondition = $" 1=1 ";
+                string whereCondition = $" SJBM='"+SJBM+"' ";
 
-                if (!string.IsNullOrEmpty(nameV))
+
+                if (!string.IsNullOrEmpty(ProxyIP))
                 {
-                    if (nameV == "有")
+                    if (ProxyIP == "补充代理IP")
                     {
-                        whereCondition += $" AND page_name is not null ";
-                    }
-                    else
-                    {
-                        whereCondition += $" AND page_name is null";
+                        whereCondition += $" AND ProxyIP is null ";
                     }
                 }
 
-                if (!string.IsNullOrEmpty(statusV))
+                if (!string.IsNullOrEmpty(BrowserID))
                 {
-                    if (statusV == "有")
-                    {
-                        whereCondition += $" AND creation_status is not null ";
-                    }
-                    else
-                    {
-                        whereCondition += $" AND creation_status is null";
-                    }
-                    //whereCondition += $" AND creation_status LIKE '%{statusV}%'";
-                }
-                if (!string.IsNullOrEmpty(findContentV))
-                {
-                    whereCondition += $" AND (page_name LIKE '%{findContentV}%' or id LIKE '%{findContentV}%' or column_name LIKE '%{findContentV}%' or table_name LIKE '%{findContentV}%')";
+                    whereCondition += $" AND BrowserID LIKE '%{BrowserID}%'";
                 }
                 int bPage = (CurrentPage - 1) * PageSize + 1;
                 int ePage = bPage + PageSize - 1;
                 string sql = $@"select * from(
-                    SELECT *,ROW_NUMBER() OVER (ORDER BY c.page_name DESC) AS RowNum FROM ColumnMetaAdmin c
+                    SELECT *,ROW_NUMBER() OVER (ORDER BY c.DpName asc) AS RowNum FROM Houtai c
                     WHERE {whereCondition} ) bb WHERE RowNum BETWEEN " + bPage + " AND " + ePage;
-                string sqlCount = $@"SELECT count(*) num FROM ColumnMetaAdmin c
+                string sqlCount = $@"SELECT count(*) num FROM Houtai c
                     WHERE {whereCondition}  ";
 
                 DataSet ds = access_sql.GreatDs(sql);
@@ -279,15 +267,19 @@ namespace WebApplication11.cg.tb
                 var hidId = item.FindControl("hidId") as HiddenField;
 
                 // 获取用户输入控件
-                var ddlCreationStatus = item.FindControl("ddlCreationStatus") as DropDownList;
-                var ddlIsBasicData = item.FindControl("ddlIsBasicData") as DropDownList;
-                var txtDataSource = item.FindControl("txtDataSource") as System.Web.UI.WebControls.TextBox;
-                var txtPageName = item.FindControl("txtPageName") as System.Web.UI.WebControls.TextBox;
-                var txtCalculationRule = item.FindControl("txtCalculationRule") as System.Web.UI.WebControls.TextBox;
+                var txtPlatform = item.FindControl("txtPlatform") as System.Web.UI.WebControls.TextBox;
+                var txtUserName = item.FindControl("txtUserName") as System.Web.UI.WebControls.TextBox;
+                var txtPassword = item.FindControl("txtPassword") as System.Web.UI.WebControls.TextBox;
+                var txtSJBM = item.FindControl("txtSJBM") as System.Web.UI.WebControls.TextBox;
+                var txtYYBM = item.FindControl("txtYYBM") as System.Web.UI.WebControls.TextBox;
+                var txtProxyIP = item.FindControl("txtProxyIP") as System.Web.UI.WebControls.TextBox;
+                var ddlCountry = item.FindControl("ddlCountry") as DropDownList;
+                var ddlPingTai = item.FindControl("ddlPingTai") as DropDownList;
 
                 // 验证控件是否存在
-                if (hidId == null || ddlIsBasicData==null|| txtDataSource==null||
-                    txtCalculationRule == null || txtPageName == null || ddlCreationStatus == null)
+                if (hidId == null || txtPlatform == null || txtUserName == null ||
+                    txtPassword == null || txtSJBM == null || txtYYBM == null
+                    || txtProxyIP == null || ddlCountry == null || ddlPingTai == null)
                 {
                     saveData.IsValid = false;
                     saveData.ErrorMessage = "找不到必要的输入控件";
@@ -295,11 +287,14 @@ namespace WebApplication11.cg.tb
                 }
 
                 // 设置数据
-                saveData.page_name = txtPageName.Text;
-                saveData.data_source = txtDataSource.Text;
-                saveData.is_basic_data = ddlIsBasicData.Text?.Trim() ?? "";
-                saveData.creation_status = ddlCreationStatus.Text?.Trim() ?? "";
-                saveData.calculation_rule = txtCalculationRule.Text;
+                saveData.Platform = txtPlatform.Text;
+                saveData.UserName = txtUserName.Text;
+                saveData.Password = txtPassword.Text;
+                saveData.SJBM = txtSJBM.Text;
+                saveData.YYBM = txtYYBM.Text;
+                saveData.ProxyIP = txtProxyIP.Text;
+                saveData.Country = ddlCountry.Text;
+                saveData.PingTai = ddlPingTai.Text;
                 saveData.id = hidId.Value?.Trim() ?? "";
                 saveData.IsValid = true;
                 saveData.ErrorMessage = "";
@@ -327,6 +322,25 @@ namespace WebApplication11.cg.tb
             }
             return result;
         }
+        public string StrToNull(Object obj)
+        {
+            string result = "";
+            try
+            {
+                if (obj == null || obj.ToString() == "")
+                {
+                    result = "";
+                }
+                else {
+                    result= obj.ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                result = "";
+            }
+            return result;
+        }
 
         private bool ExecuteSaveItem(ItemSaveData saveData)
         {
@@ -337,7 +351,7 @@ namespace WebApplication11.cg.tb
                     return false;
                 }
 
-                string sql = "update ColumnMetaAdmin set creation_status='"+saveData.creation_status + "',is_basic_data='" + saveData.is_basic_data + "',data_source='" + saveData.data_source + "',page_name='" + saveData.page_name + "',calculation_rule='" + saveData.calculation_rule + "' where id='" + saveData.id + "'";
+                string sql = "update Houtai set Platform='" + saveData.Platform + "',Country='" + saveData.Country + "',PingTai='" + saveData.PingTai + "',UserName='" + saveData.UserName + "',Password='" + saveData.Password + "',SJBM='" + saveData.SJBM + "',YYBM='" + saveData.YYBM + "',ProxyIP='" + saveData.ProxyIP + "' where id='" + saveData.id + "'";
                 access_sql.DoSql(sql);
                 return true;
             }
@@ -396,32 +410,6 @@ namespace WebApplication11.cg.tb
             }
         }
 
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string sqlSelect = "select count(*) from ColumnMetaAdmin where column_name='" + txtLm.Text+"'";
-                string str=access_sql.GetOneValue(sqlSelect);
-                if (str !="0")
-                {
-                    string sql = "update ColumnMetaAdmin set table_name='" + txtTa.Text + "' where column_name='" + txtLm.Text + "'";
-                    access_sql.DoSql(sql);
-                }
-                else
-                {
-                    string sql = "insert into ColumnMetaAdmin(column_name,table_name)";
-                    sql += "values('" + txtLm.Text + "','" + txtTa.Text + "')";
-                    access_sql.DoSql(sql);
-                }
-                lits.Text = "新增成功!";
-                BindData();
-            }
-            catch (Exception ex)
-            {
-                lits.Text = "保存失败：" + ex.Message;
-            }
-        }
-
         protected void btnImport_Click(object sender, EventArgs e)
         {
             if (fup1.FileName != "")
@@ -429,45 +417,39 @@ namespace WebApplication11.cg.tb
                 string ext = System.IO.Path.GetExtension(fup1.FileName);
                 if (ext == ".xlsx")
                 {
-                    if (!Directory.Exists(Server.MapPath("/upload/ColumnMetaAdmin/")))
+                    if (!Directory.Exists(Server.MapPath("/upload/Houtai/")))
                     {
-                        Directory.CreateDirectory(Server.MapPath("/upload/ColumnMetaAdmin/"));
+                        Directory.CreateDirectory(Server.MapPath("/upload/Houtai/"));
                     }
-                    string path = Server.MapPath("/upload/ColumnMetaAdmin/") + fup1.FileName;
+                    string path = Server.MapPath("/upload/Houtai/") + fup1.FileName;
 
                     this.fup1.SaveAs(path);
 
                     System.Data.DataTable dtout = ReadExcelData_(path);
-                    string table_name=txtTableName.Text;
+                    string sjbm = txtSjbmValue.Text;
                     if (dtout != null && dtout.Rows.Count > 0)
                     {
-                        DataRow dr = dtout.Rows[0];
-                        DataRow dr2 = dtout.Rows[1];
-                        int s = dr.ItemArray.Length;
-
-                        DataSet ds = access_sql.GreatDs("select column_name from ColumnMetaAdmin");
+                        DataSet ds = access_sql.GreatDs("select BrowserID from Houtai");
                         System.Data.DataTable dt = ds.Tables[0];
-                        for (int i = 0; i < s; i++)
-                        {
-                            string column_name = dr[i].ToString();
-                            string page_name = dr2[i].ToString();
-                            //string sqlSelect = "select count(*) from ColumnMetaAdmin where column_name='" + column_name + "'";
-                            //string str = access_sql.GetOneValue(sqlSelect);
+                        for (int i = 1; i < dtout.Rows.Count; i++) {
+                            string BrowserID = dtout.Rows[i][1].ToString();
+                            string GroupName = dtout.Rows[i][2].ToString();
+                            string DpName = dtout.Rows[i][3].ToString();
                             bool johnExists = dt.AsEnumerable()
-                            .Any(row => row.Field<string>("column_name") == column_name);
+                            .Any(row => row.Field<string>("BrowserID") == BrowserID);
                             if (johnExists)
                             {
-                                string sql = "update ColumnMetaAdmin set page_name='" + page_name + "',table_name='" + table_name + "' where column_name='" + column_name + "'";
+                                string sql = "update Houtai set SJBM='" + sjbm + "',GroupName='" + GroupName + "',DpName='" + DpName + "' where BrowserID='" + BrowserID + "'";
                                 access_sql.DoSql(sql);
                             }
                             else
                             {
-                                string sql = "insert into ColumnMetaAdmin(page_name,column_name,table_name)";
-                                sql += "values('" + page_name + "','" + column_name + "','" + table_name + "')";
+                                string sql = "insert into Houtai(SJBM,BrowserID,GroupName,DpName)";
+                                sql += "values('" + sjbm + "','" + BrowserID + "','" + GroupName + "','" + DpName + "')";
                                 access_sql.DoSql(sql);
                             }
                         }
-                        lits.Text = "处理成功"+s+"条数据!";
+                        lits.Text = "处理成功" + dtout.Rows.Count + "条数据!";
                     }
                     BindData();
                 }
@@ -549,6 +531,25 @@ namespace WebApplication11.cg.tb
 
             }
             return dt;
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string id=_hidId.Value;
+                string Platform = _txtPlatform.Text;
+                string Country = _ddlCountry.SelectedValue;
+                string PingTai = _ddlPingTai.SelectedValue;
+                string SJBM = _txtSJBM.Text;
+                string YYBM = _txtYYBM.Text;
+                string sql = "update Houtai set Platform='"+ Platform + "',Country='" + Country + "',PingTai='" + PingTai + "',SJBM='" + SJBM + "',YYBM='" + YYBM + "' where id in(" + id+")";
+                access_sql.DoSql(sql);
+                lits.Text = "处理成功" + id + "数据!";
+            }
+            catch (Exception ex) { 
+            
+            }
         }
     }
 }
