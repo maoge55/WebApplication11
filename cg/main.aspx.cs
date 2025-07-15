@@ -344,7 +344,9 @@ namespace WebApplication11.cg
                     头程物流表.Visible = true;
                     _1688采购记录检索.Visible = true;
                     采购销售海外仓数据匹配.Visible = true;
-
+                    广告测品订单.Visible = true;
+                    采集数据_1688_运营.Visible = true;
+                    虾皮首页信息.Visible = true;
 
                 }
             }
