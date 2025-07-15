@@ -148,6 +148,7 @@ namespace WebApplication11.cg
                     印尼出单数据_转_泰国广告测品.Visible = true;
                     头程物流价格_运营.Visible = true;
                     店铺资料管理_运营.Visible = true;
+                    订单数据展示.Visible = true;
                 }
                 if (uid == "8")
                 {
