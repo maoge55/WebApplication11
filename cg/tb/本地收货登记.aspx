@@ -278,10 +278,6 @@
                                     <td><%# Eval("HuoPinBiaoTi") %></td>
                                 </tr>
                                 <tr>
-                                    <td class="bbb">1688_SKU_ID</td>
-                                    <td><%# Eval("Skuid") %></td>
-                                </tr>
-                                <tr>
                                     <td class="bbb">1688链接</td>
                                     <td>
                                         <a href="https://detail.1688.com/offer/<%# Eval("OfferID") %>.html" target="_blank">
@@ -290,12 +286,24 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class="bbb">1688_Offer_ID</td>
+                                    <td><%# Eval("OfferID") %></td>
+                                </tr>
+                                <tr>
+                                    <td class="bbb">1688_SKU_ID</td>
+                                    <td><%# Eval("Skuid") %></td>
+                                </tr>
+                                <tr>
                                     <td class="bbb">数量</td>
                                     <td><%# Eval("ShuLiang") %></td>
                                 </tr>
                                 <tr>
                                     <td class="bbb">单位</td>
                                     <td><%# Eval("DanWei") %></td>
+                                </tr>
+                                <tr>
+                                    <td class="bbb">系统编码_海外仓_印尼</td>
+                                    <td><%# Eval("haiwaicangxitongbianma") %></td>
                                 </tr>
                                 <tr>
                                     <td class="bbb">实际收货数量</td>

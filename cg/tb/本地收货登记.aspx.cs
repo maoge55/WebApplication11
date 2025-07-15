@@ -68,7 +68,7 @@ namespace WebApplication11.cg.tb
                 uid = HttpContext.Current.Request.Cookies["cuid"].Value;
 
                 // 检查用户权限（采购员权限）
-                if (uid != "8" && uid != "9" && uid != "18" && uid != "19" && uid != "12" && uid != "6" && uid!="22")
+                if (uid != "8" && uid != "9" && uid != "18" && uid != "19" && uid != "12" && uid != "6")
                 {
                     Response.Redirect("/cg/clogin.aspx");
                 }
@@ -126,8 +126,11 @@ namespace WebApplication11.cg.tb
                 int bPage= (CurrentPage-1)*PageSize+1;
                 int ePage = bPage + PageSize-1;
                 string sql = $@"select * from(
-                    SELECT *,ROW_NUMBER() OVER (ORDER BY c.YunDanHao DESC) AS RowNum FROM {TABLE_S1688_ORDER} c
-                    WHERE {whereCondition} ) bb WHERE RowNum BETWEEN "+bPage+" AND "+ePage;
+                SELECT c.*,ROW_NUMBER() OVER (ORDER BY c.YunDanHao DESC) AS RowNum, w.haiwaicangxitongbianma FROM S1688Order c OUTER APPLY ( SELECT TOP 1 * FROM Purchase_Sales_Warehouse w WHERE (c.Skuid IS NOT NULL AND c.Skuid = w.SkuID_1688) OR (c.Skuid IS NULL AND c.OfferID = w.OfferID_1688) ORDER BY  CASE WHEN c.Skuid IS NOT NULL THEN 1 ELSE 2 END ) w 
+                WHERE {whereCondition} ) bb WHERE RowNum BETWEEN "+bPage+" AND "+ePage;
+                //string sql = $@"select * from(
+                //    SELECT *,ROW_NUMBER() OVER (ORDER BY c.YunDanHao DESC) AS RowNum FROM {TABLE_S1688_ORDER} c
+                //    WHERE {whereCondition} ) bb WHERE RowNum BETWEEN "+bPage+" AND "+ePage;
                 string sqlCount = $@"SELECT count(*) num FROM S1688Order c
                     WHERE {whereCondition}  ";
 
@@ -379,12 +382,12 @@ namespace WebApplication11.cg.tb
                     saveData.ErrorMessage = "残次品数量不能为空";
                     return saveData;
                 }
-                if (string.IsNullOrWhiteSpace(txtDingDanBeiZhu.Text))
-                {
-                    saveData.IsValid = false;
-                    saveData.ErrorMessage = "订单备注不能为空";
-                    return saveData;
-                }
+                //if (string.IsNullOrWhiteSpace(txtDingDanBeiZhu.Text))
+                //{
+                //    saveData.IsValid = false;
+                //    saveData.ErrorMessage = "订单备注不能为空";
+                //    return saveData;
+                //}
 
 
                 // 设置数据
