@@ -246,9 +246,9 @@
                             <a href="<%# Eval("sku_img") %>" target="_blank">
                                 <img 
                                 src='<%# 
-                                    Eval("SKU图片") != null && Eval("SKU图片").ToString().ToLower().StartsWith("http") 
-                                    ?"ImageProxy.aspx?url=" + Convert.ToString(Eval("SKU图片")) 
-                                    : ResolveUrl(Convert.ToString(Eval("SKU图片")))
+                                    Eval("sku_img") != null && Eval("sku_img").ToString().ToLower().StartsWith("http") 
+                                    ?"ImageProxy.aspx?url=" + Convert.ToString(Eval("sku_img")) 
+                                    : ResolveUrl(Convert.ToString(Eval("sku_img")))
                                 %>' 
                                 style="width:300px" />
                             </a>
