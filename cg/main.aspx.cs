@@ -149,6 +149,7 @@ namespace WebApplication11.cg
                     头程物流价格_运营.Visible = true;
                     店铺资料管理_运营.Visible = true;
                     订单数据展示.Visible = true;
+                    列名总表_管理员.Visible = true;
                 }
                 if (uid == "8")
                 {
