@@ -266,7 +266,7 @@
                 <input type="checkbox" id="chkAll" onclick="checkAll(this)" class="checkbox-all" />
             选择全部
             &nbsp;
-                <asp:Button ID="btnUpdate" runat="server" Text="选中修改" 
+                <asp:Button ID="btnUpdate" runat="server" Text="选中修改+保存" 
                     BackColor="Red" 
                     ForeColor="White" OnClick="btnUpdate_Click"
                     ValidationGroup="searchGroup" OnClientClick="return applyBatchStatus();" />
