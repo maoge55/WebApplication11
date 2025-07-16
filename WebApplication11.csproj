@@ -251,6 +251,7 @@
     <Content Include="cg\tb\店铺资料管理_运营.aspx" />
     <Content Include="cg\tb\本地收货登记.aspx" />
     <Content Include="cg\tb\残次品退货.aspx" />
+    <Content Include="cg\tb\菲律宾shopee数据处理_运营.aspx" />
     <Content Include="cg\tb\采购单_印尼_管理员_新.aspx" />
     <Content Include="cg\tb\采购单_印尼_采购员_新.aspx" />
     <Content Include="cg\tb\采购订单补充资料.aspx" />
@@ -884,6 +885,13 @@
     </Compile>
     <Compile Include="cg\tb\残次品退货.aspx.designer.cs">
       <DependentUpon>残次品退货.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\tb\菲律宾shopee数据处理_运营.aspx.cs">
+      <DependentUpon>菲律宾shopee数据处理_运营.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\tb\菲律宾shopee数据处理_运营.aspx.designer.cs">
+      <DependentUpon>菲律宾shopee数据处理_运营.aspx</DependentUpon>
     </Compile>
     <Compile Include="cg\tb\采购单_印尼_管理员_新.aspx.cs">
       <DependentUpon>采购单_印尼_管理员_新.aspx</DependentUpon>

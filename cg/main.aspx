@@ -152,8 +152,7 @@
                         <a href="/cg/tb/产品利润表_印尼_管理员.aspx" runat="server" id="产品利润表_印尼_管理员" visible="false" class="a9" target="_blank">49-产品利润表_印尼_管理员</a><br />
                         <a href="/cg/tb/列名总表_管理员.aspx" runat="server" id="列名总表_管理员" visible="false" class="a9" target="_blank">50-列名总表_管理员</a><br />
                         <a href="/cg/tb/店铺资料管理_运营.aspx" runat="server" id="店铺资料管理_运营" visible="false" class="a9" target="_blank">51-店铺资料管理_运营</a><br />
-
-
+                        <a href="/cg/tb/菲律宾shopee数据处理_运营.aspx" runat="server" id="菲律宾shopee数据处理_运营" visible="false" class="a9" target="_blank">52-菲律宾shopee数据处理_运营</a><br />
                         
                     </div>
                     <br />
@@ -171,7 +170,6 @@
                         <a href="/cg/me/POD原图.aspx" class="a6" runat="server" id="POD原图" target="_blank" visible="false">9-POD原图</a><br />
                         <a href="/cg/me/POD产品审核数量查看与分配.aspx" class="a8" runat="server" id="POD产品审核数量查看与分配" target="_blank" visible="false">10-POD产品审核数量查看与分配</a><br />
                         <a href="/cg/me/虾皮群控任务表.aspx" class="a2" runat="server" id="虾皮群控任务表2" target="_blank" visible="false">11-虾皮群控任务表</a><br />
-
 
                         <a href="/cg/me/虾皮菲律宾广告产品找货源.aspx" class="a2" runat="server" id="虾皮菲律宾广告产品找货源" target="_blank" visible="false">12-虾皮菲律宾广告产品找货源</a><br />
                         <a href="/cg/me/虾皮菲律宾广告产品找货源数量查看与分配.aspx" class="a2" runat="server" id="虾皮菲律宾广告产品找货源数量查看与分配" target="_blank" visible="false">13-虾皮菲律宾广告产品找货源数量查看与分配</a><br />

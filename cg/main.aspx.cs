@@ -110,6 +110,7 @@ namespace WebApplication11.cg
                     产品利润表_印尼_管理员.Visible = true;
                     列名总表_管理员.Visible = true;
                     店铺资料管理_运营.Visible = true;
+                    菲律宾shopee数据处理_运营.Visible = true;
                 }
                 if (uid == "6")
                 {
@@ -150,6 +151,7 @@ namespace WebApplication11.cg
                     店铺资料管理_运营.Visible = true;
                     订单数据展示.Visible = true;
                     列名总表_管理员.Visible = true;
+                    菲律宾shopee数据处理_运营.Visible = true;
                 }
                 if (uid == "8")
                 {
@@ -280,6 +282,7 @@ namespace WebApplication11.cg
                     头程物流表.Visible = true;
                     采集数据_1688_运营.Visible = true;
                     店铺资料管理_运营.Visible = true;
+                    菲律宾shopee数据处理_运营.Visible = true;
 
                 }
                 if (uid == "19")
@@ -311,6 +314,7 @@ namespace WebApplication11.cg
                     货源补充体积_重量_包装等.Visible = true;
                     采集数据_1688_运营.Visible = true;
                     店铺资料管理_运营.Visible = true;
+                    菲律宾shopee数据处理_运营.Visible = true;
                 }
                 if (uid == "20")
                 {
