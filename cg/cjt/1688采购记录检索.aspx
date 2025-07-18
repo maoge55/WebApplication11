@@ -125,12 +125,13 @@
 
                             </td>
                             <td style="width: 30%; text-align: center">
+                                <img 
                                 src='<%# 
-                                Eval("sku_img") != null && Eval("sku_img").ToString().ToLower().StartsWith("http") 
-                                ?"ImageProxy.aspx?url=" + Convert.ToString(Eval("sku_img")) 
-                                : ResolveUrl(Convert.ToString(Eval("sku_img")))
-                            %>' 
-                            style="width:300px" />
+                                    Eval("sku_img") != null && Eval("sku_img").ToString().ToLower().StartsWith("http") 
+                                    ?"ImageProxy.aspx?url=" + Convert.ToString(Eval("sku_img")) 
+                                    : ResolveUrl(Convert.ToString(Eval("sku_img")))
+                                %>' 
+                                style="width:300px" />
                             </td>
                             <td>
                                 <table class="ttta">
