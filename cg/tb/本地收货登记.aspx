@@ -257,7 +257,13 @@
                         </td>
                         <td style="width: 28%; text-align: center">
                             <a href="<%# Eval("sku_img") %>" target="_blank">
-                                <img src="<%# Eval("sku_img") %>" style="width: 300px; height: 300px;""/>
+                            <img 
+                            src='<%# 
+                                Eval("SKU图片") != null && Eval("sku_img").ToString().ToLower().StartsWith("http") 
+                                ?"ImageProxy.aspx?url=" + Convert.ToString(Eval("sku_img")) 
+                                : ResolveUrl(Convert.ToString(Eval("sku_img")))
+                            %>' 
+                            style="width:300px" />
                             </a>
                         </td>
                         <td style="width: 66%">
