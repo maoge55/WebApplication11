@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.SS.Formula.PTG;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -25,11 +26,69 @@ namespace WebApplication11.cg.tb
             public string DingDanBeiZhu { get; set; }
             public string ShiJiShouHuoCountOld { get; set; }
             public string CanCiPinCountOld { get; set; }
+            public string pswid { get; set; }
+            public string chang { get; set; }
+            public string kuan { get; set; }
+            public string gao { get; set; }
+            public string zhongliang { get; set; }
+            public string sjtype1 { get; set; }
+            public string baozhuanghe { get; set; }
             public bool IsValid { get; set; }
             public string ErrorMessage { get; set; }
             public string sku_img { get; set; }
             public string pimage { get; set; }
             public string video { get; set; }
+        }
+        private void LoadBatchDropdowns()
+        {
+            try
+            {
+                // 清空批量应用下拉框
+                if (ddlBatchGdId.Items.Count > 0)
+                {
+                    ddlBatchPtGd.Items.Clear();
+                    ddlBatchGdId.Items.Clear();
+                    ddlBatchGdTh.Items.Clear();
+                }
+
+                // 添加默认选项
+                ddlBatchPtGd.Items.Add(new ListItem("请选择", ""));
+                ddlBatchGdId.Items.Add(new ListItem("请选择", ""));
+                ddlBatchGdTh.Items.Add(new ListItem("请选择", ""));
+
+                // 添加物流商品种编号选项
+                foreach (DataRow row in LogisticsProductTypes.Rows)
+                {
+                    string code = row["logistics_product_type_code"].ToString();
+                    ddlBatchPtGd.Items.Add(new ListItem(code, code));
+                    ddlBatchGdId.Items.Add(new ListItem(code, code));
+                    ddlBatchGdTh.Items.Add(new ListItem(code, code));
+                }
+            }
+            catch (Exception e) { 
+            
+            }
+        }
+        private DataTable _logisticsProductTypes = null;
+        private DataTable LogisticsProductTypes
+        {
+            get
+            {
+                if (_logisticsProductTypes == null)
+                {
+                    string sql = "SELECT logistics_product_type_code FROM HeadLogisticsPrice group by logistics_product_type_code ORDER BY logistics_product_type_code COLLATE Chinese_PRC_Stroke_CI_AI_KS";
+                    DataSet ds = access_sql.GreatDs(sql);
+                    if (access_sql.yzTable(ds))
+                    {
+                        _logisticsProductTypes = ds.Tables[0];
+                    }
+                    else
+                    {
+                        _logisticsProductTypes = new DataTable();
+                    }
+                }
+                return _logisticsProductTypes;
+            }
         }
 
         // 表名变量
@@ -76,13 +135,14 @@ namespace WebApplication11.cg.tb
 
             if (!IsPostBack)
             {
-
+                LoadBatchDropdowns();
             }
         }
 
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            LoadBatchDropdowns();
             if (string.IsNullOrWhiteSpace(txtYYBM.Text))
             {
                 lits.Text = "运营编码为必填项！";
@@ -126,7 +186,7 @@ namespace WebApplication11.cg.tb
                 int bPage= (CurrentPage-1)*PageSize+1;
                 int ePage = bPage + PageSize-1;
                 string sql = $@"select * from(
-                SELECT c.*,ROW_NUMBER() OVER (ORDER BY c.YunDanHao DESC) AS RowNum, w.haiwaicangxitongbianma FROM S1688Order c OUTER APPLY ( SELECT TOP 1 * FROM Purchase_Sales_Warehouse w WHERE (c.Skuid IS NOT NULL AND c.Skuid = w.SkuID_1688) OR (c.Skuid IS NULL AND c.OfferID = w.OfferID_1688) ORDER BY  CASE WHEN c.Skuid IS NOT NULL THEN 1 ELSE 2 END ) w 
+                SELECT c.*,ROW_NUMBER() OVER (ORDER BY c.YunDanHao DESC) AS RowNum, w.haiwaicangxitongbianma,w.chang,w.kuan,w.gao,w.zhongliang,w.sjtype sjtype1,w.logistics_product_type_code_pt_gd,w.logistics_product_type_code_gd_id,w.logistics_product_type_code_gd_th,w.baozhuanghe,w.baozhuanghe1688lianjie1,w.zuidiqipiliang1,w.baozhuanghe1688jiage1,w.id pswid FROM S1688Order c OUTER APPLY ( SELECT TOP 1 * FROM Purchase_Sales_Warehouse w WHERE (c.Skuid IS NOT NULL AND c.Skuid = w.SkuID_1688) OR (c.Skuid IS NULL AND c.OfferID = w.OfferID_1688) ORDER BY  CASE WHEN c.Skuid IS NOT NULL THEN 1 ELSE 2 END ) w 
                 WHERE {whereCondition} ) bb WHERE RowNum BETWEEN "+bPage+" AND "+ePage;
                 //string sql = $@"select * from(
                 //    SELECT *,ROW_NUMBER() OVER (ORDER BY c.YunDanHao DESC) AS RowNum FROM {TABLE_S1688_ORDER} c
@@ -388,6 +448,24 @@ namespace WebApplication11.cg.tb
                 //    saveData.ErrorMessage = "订单备注不能为空";
                 //    return saveData;
                 //}
+                #region 表Purchase_Sales_Warehouse
+                // 获取隐藏字段值
+                var hidPswId = item.FindControl("hidPswId") as HiddenField;
+                // 获取用户输入控件
+                var txtChang = item.FindControl("txtChang") as TextBox;
+                var txtKuan = item.FindControl("txtKuan") as TextBox;
+                var txtGao = item.FindControl("txtGao") as TextBox;
+                var txtZhongliang = item.FindControl("txtZhongliang") as TextBox;
+                var ddlSjtype1 = item.FindControl("ddlSjtype1") as DropDownList;
+                var ddlBaozhuanghe = item.FindControl("ddlBaozhuanghe") as DropDownList;
+                saveData.pswid=hidPswId.Value?.Trim() ?? "";
+                saveData.chang = StrToInt(txtChang.Text);
+                saveData.kuan = StrToInt(txtKuan.Text);
+                saveData.gao = StrToInt(txtGao.Text);
+                saveData.zhongliang = StrToInt(txtZhongliang.Text);
+                saveData.sjtype1 = ddlSjtype1.Text;
+                saveData.baozhuanghe = ddlBaozhuanghe.Text;
+                #endregion
 
 
                 // 设置数据
@@ -474,12 +552,40 @@ namespace WebApplication11.cg.tb
                 return saveData;
             }
         }
+        public double StrToDouble(string str)
+        {
+            double result = 0;
+            try
+            {
+                double num = double.Parse(str);
+                result = num;
+            }
+            catch (Exception e)
+            {
+                result = 0;
+            }
+            return result;
+        }
+        public int StrToInt2(string str)
+        {
+            int result = 0;
+            try
+            {
+                int num = int.Parse(str);
+                result = num;
+            }
+            catch (Exception e)
+            {
+                result = 0;
+            }
+            return result;
+        }
         private string StrToInt(string str) {
             string result = "";
             try
             {
                 int num = int.Parse(str);
-                result = num + "";
+                result = str + "";
             }
             catch (Exception e)
             {
@@ -504,6 +610,11 @@ namespace WebApplication11.cg.tb
                 #region 更新采购单-skuid
                 string sqlCaigoudan = "update caigoudan set ShiJiShouHuoCount="+sjsh+",CanCiPinCount="+ccp +" where skuid="+saveData.Skuid;
                 access_sql.DoSql(sqlCaigoudan);
+                #endregion
+
+                #region 更新表Purchase_Sales_Warehouse
+                string sqlPsw = "update Purchase_Sales_Warehouse set chang=" + saveData.chang + ",kuan=" + saveData.kuan + ",gao=" + saveData.gao + ",zhongliang="+saveData.zhongliang+ ",sjtype='"+saveData.sjtype1+"',baozhuanghe='"+saveData.baozhuanghe+"' where id =" + saveData.pswid;
+                access_sql.DoSql(sqlPsw);
                 #endregion
                 //string whereCondition = $"caigoudanhao = '{saveData.Caigoudanhao.Replace("'", "''")}' AND SKUID_ID = '{saveData.SKUID_ID.Replace("'", "''")}'";
 
@@ -575,6 +686,26 @@ namespace WebApplication11.cg.tb
             catch (Exception ex)
             {
                 lits.Text = "保存失败：" + ex.Message;
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string id = _hidId.Value;
+                string GdId = ddlBatchGdId.SelectedValue;
+                string GdTh = ddlBatchGdTh.SelectedValue;
+                string PtGd = ddlBatchPtGd.SelectedValue;
+                string sql = "update Purchase_Sales_Warehouse set logistics_product_type_code_pt_gd='"+ PtGd + "',logistics_product_type_code_gd_id='"+ GdId + "',logistics_product_type_code_gd_th='"+ GdTh + "' where id in("+id+")";
+
+                access_sql.DoSql(sql);
+                lits.Text = "处理成功" + id + "数据!";
+                BindData();
+            }
+            catch (Exception ex)
+            {
+                lits.Text = "处理异常!";
             }
         }
     }

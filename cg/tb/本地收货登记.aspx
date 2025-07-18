@@ -142,35 +142,27 @@
 
         function applyBatchStatus() {
             // 直接通过名称查找批量状态下拉框（在Repeater的HeaderTemplate中）
-            var batchStatusDropdown = document.querySelector("select[id*='ddlBatchStatus']");
-            if (!batchStatusDropdown) {
-                alert('找不到批量状态选择框！');
-                return false;
-            }
-            
-            var batchStatus = batchStatusDropdown.value;
-            if (batchStatus === '') {
-                alert('请选择要批量应用的采购单状态！');
-                return false;
-            }
-            
+
             var checkedItems = document.querySelectorAll("input[id*='chkItem']:checked");
             if (checkedItems.length === 0) {
                 alert('请至少选择一行进行批量操作！');
                 return false;
             }
-            
+            let newV = "";
             // 获取所有被选中行的状态下拉框
-            checkedItems.forEach(function(checkbox) {
+            checkedItems.forEach(function (checkbox) {
                 var row = checkbox.closest('tr');
-                var statusDropdown = row.querySelector("select[id*='ddlStatus']");
-                if (statusDropdown) {
-                    statusDropdown.value = batchStatus;
+                var statusDropdown = row.querySelector("input[id*='hidPswId']");
+                if (newV == "") {
+                    newV = statusDropdown.value;
+                } else {
+                    newV += "," + statusDropdown.value;
                 }
             });
-            
-            alert('批量状态已应用到选中行，请点击保存按钮保存到数据库！');
-            return false; // 防止提交
+            document.getElementById("_hidId").value = newV;
+
+            //alert('批量状态已应用到选中行，请点击保存按钮保存到数据库！');
+            //return false; // 防止提交
         }
     </script>
 </head>
@@ -232,6 +224,24 @@
             <asp:Literal ID="Literal1" runat="server"></asp:Literal>
         </div>
         <br />
+
+        <div style="padding:10px; border:1px solid #EDF2FA;">
+    <asp:HiddenField ID="_hidId" runat="server" Value='' />
+            物流商品种编号_莆田广东:
+<asp:DropDownList ID="ddlBatchPtGd" runat="server"></asp:DropDownList>&nbsp;
+物流商品种编号_广东印尼:
+<asp:DropDownList ID="ddlBatchGdId" runat="server"></asp:DropDownList>&nbsp;
+物流商品种编号_广东泰国:
+<asp:DropDownList ID="ddlBatchGdTh" runat="server"></asp:DropDownList>
+        &nbsp;
+        <input type="checkbox" id="chkAll" onclick="checkAll(this)" class="checkbox-all" />
+    选择全部
+    &nbsp;
+        <asp:Button ID="btnUpdate" runat="server" Text="选中修改+保存" 
+            BackColor="Red" 
+            ForeColor="White" OnClick="btnUpdate_Click"
+            ValidationGroup="searchGroup" OnClientClick="return applyBatchStatus();" />
+    </div>
         
         <!-- 表格数据 -->
         <table class="ttt">
@@ -239,23 +249,21 @@
                 
                 <ItemTemplate>
                     <tr>
+                        <td style="width: 2%; text-align: center; vertical-align: middle;">
+                            <asp:CheckBox ID="chkItem" name='<%# Eval("pswid") %>' runat="server" />
+                        </td>
                         <td style="width: 4%; text-align: center">
                             <%# Container.ItemIndex + 1 %>
                         </td>
                         <td style="width: 28%; text-align: center">
                             <a href="<%# Eval("sku_img") %>" target="_blank">
-                                <img 
-                                src='<%# 
-                                    Eval("sku_img") != null && Eval("sku_img").ToString().ToLower().StartsWith("http") 
-                                    ?"/cg/cjt/ImageProxy.aspx?url=" + Convert.ToString(Eval("sku_img")) 
-                                    : ResolveUrl(Convert.ToString(Eval("sku_img")))
-                                %>' 
-                                style="width:300px" />
+                                <img src="<%# Eval("sku_img") %>" style="width: 300px; height: 300px;""/>
                             </a>
                         </td>
-                        <td style="width: 68%">
+                        <td style="width: 66%">
                             <!-- 隐藏字段存储关键信息 -->
                             <asp:HiddenField ID="hidId" runat="server" Value='<%# Eval("id") %>' />
+                            <asp:HiddenField ID="hidPswId" runat="server" Value='<%# Eval("pswid") %>' />
                             <asp:HiddenField ID="hidSkuid" runat="server" Value='<%# Eval("Skuid") %>' />
                             <asp:HiddenField ID="txtShiJiShouHuoCountOld" runat="server" Value='<%# Eval("ShiJiShouHuoCount") %>' />
                             <asp:HiddenField ID="txtCanCiPinCountOld" runat="server" Value='<%# Eval("CanCiPinCount") %>' />
@@ -329,6 +337,63 @@
                                         <asp:TextBox ID="txtDingDanBeiZhu" runat="server" 
                                             Text='<%# Eval("DingDanBeiZhu") %>' 
                                             width="90%" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bbb">参数</td>
+                                    <td>
+                                        长：
+                                        <asp:TextBox ID="txtChang" runat="server" 
+                                            Text='<%# Eval("chang") %>' 
+                                            width="150px" />
+                                        宽：
+                                        <asp:TextBox ID="txtKuan" runat="server" 
+                                            Text='<%# Eval("kuan") %>' 
+                                            width="150px" />
+                                        高：
+                                        <asp:TextBox ID="txtGao" runat="server" 
+                                            Text='<%# Eval("gao") %>' 
+                                            width="150px" />
+                                        重量：
+                                        <asp:TextBox ID="txtZhongliang" runat="server" 
+                                            Text='<%# Eval("zhongliang") %>' 
+                                            width="150px" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bbb">数据类型</td>
+                                    <td>
+                                        <asp:DropDownList ID="ddlSjtype1" runat="server" SelectedValue='<%# Eval("sjtype1") %>'>
+                                            <asp:ListItem Value="">请选择</asp:ListItem>
+                                            <asp:ListItem Value="发仓货物">发仓货物</asp:ListItem>
+                                            <asp:ListItem Value="耗材">耗材</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bbb">物流商品种编号</td>
+                                    <td>
+                                        物流商品种编号_莆田广东:<b><%# Eval("logistics_product_type_code_pt_gd") %></b>&nbsp;|&nbsp;
+                                        物流商品种编号_广东印尼:<b><%# Eval("logistics_product_type_code_gd_id") %></b>&nbsp;|&nbsp;
+                                        物流商品种编号_广东泰国:<b><%# Eval("logistics_product_type_code_gd_th") %></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bbb">包装盒</td>
+                                    <td>
+                                        <asp:DropDownList ID="ddlBaozhuanghe" runat="server" SelectedValue='<%# Eval("baozhuanghe") %>'>
+                                            <asp:ListItem Value="">请选择</asp:ListItem>
+                                            <asp:ListItem Value="是">是</asp:ListItem>
+                                            <asp:ListItem Value="否">否</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bbb">包装盒规格</td>
+                                    <td>
+                                        包装盒1688链接1：<b><%# Eval("baozhuanghe1688jiage1") %></b>&nbsp;|&nbsp;
+                                        最低起批量1：<b><%# Eval("baozhuanghe1688lianjie1") %> </b>&nbsp;|&nbsp;
+                                        包装盒价格1：<b><%# Eval("zuidiqipiliang1") %></b>
                                     </td>
                                 </tr>
                                 <tr>
