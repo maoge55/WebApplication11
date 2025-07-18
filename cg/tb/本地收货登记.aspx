@@ -51,9 +51,9 @@
         }
 
         /* 统一所有输入框和下拉框的高度 */
-        input[type="text"], 
-        select, 
-        .input-number, 
+        input[type="text"],
+        select,
+        .input-number,
         .batch-dropdown {
             height: 30px;
             padding: 4px;
@@ -99,9 +99,9 @@
             font-size: 14px;
         }
 
-        .batch-button:hover {
-            background-color: #1976D2;
-        }
+            .batch-button:hover {
+                background-color: #1976D2;
+            }
 
         /* 分页按钮样式 */
         .pager-btn {
@@ -257,13 +257,13 @@
                         </td>
                         <td style="width: 28%; text-align: center">
                             <a href="<%# Eval("sku_img") %>" target="_blank">
-                            <img 
-                            src='<%# 
-                                Eval("sku_img") != null && Eval("sku_img").ToString().ToLower().StartsWith("http") 
-                                ?"/cg/cjt/ImageProxy.aspx?url=" + Convert.ToString(Eval("sku_img")) 
-                                : ResolveUrl(Convert.ToString(Eval("sku_img")))
-                            %>' 
-                            style="width:300px" />
+                                <img 
+                                    src='<%# 
+                                        Eval("sku_img") != null && Eval("sku_img").ToString().ToLower().StartsWith("http") 
+                                        ?"/cg/cjt/ImageProxy.aspx?url=" + Convert.ToString(Eval("sku_img")) 
+                                        : ResolveUrl(Convert.ToString(Eval("sku_img")))
+                                    %>' 
+                                    style="width:300px" />
                             </a>
                         </td>
                         <td style="width: 66%">
@@ -351,19 +351,19 @@
                                         长：
                                         <asp:TextBox ID="txtChang" runat="server" 
                                             Text='<%# Eval("chang") %>' 
-                                            width="150px" />
+                                            width="150px" />CM
                                         宽：
                                         <asp:TextBox ID="txtKuan" runat="server" 
                                             Text='<%# Eval("kuan") %>' 
-                                            width="150px" />
+                                            width="150px" />CM
                                         高：
                                         <asp:TextBox ID="txtGao" runat="server" 
                                             Text='<%# Eval("gao") %>' 
-                                            width="150px" />
+                                            width="150px" />CM
                                         重量：
                                         <asp:TextBox ID="txtZhongliang" runat="server" 
                                             Text='<%# Eval("zhongliang") %>' 
-                                            width="150px" />
+                                            width="150px" />KG
                                     </td>
                                 </tr>
                                 <tr>
@@ -397,9 +397,35 @@
                                 <tr>
                                     <td class="bbb">包装盒规格</td>
                                     <td>
-                                        包装盒1688链接1：<b><%# Eval("baozhuanghe1688jiage1") %></b>&nbsp;|&nbsp;
-                                        最低起批量1：<b><%# Eval("baozhuanghe1688lianjie1") %> </b>&nbsp;|&nbsp;
-                                        包装盒价格1：<b><%# Eval("zuidiqipiliang1") %></b>
+                                        长：
+                                        <asp:TextBox ID="txtBaozhuanghechang" runat="server" 
+                                            Text='<%# Eval("baozhuanghechang") %>' 
+                                            width="150px" />CM
+                                        宽：
+                                        <asp:TextBox ID="txtBaozhuanghekuan" runat="server" 
+                                            Text='<%# Eval("baozhuanghekuan") %>' 
+                                            width="150px" />CM
+                                        高：
+                                        <asp:TextBox ID="txtBaozhuanghegao" runat="server" 
+                                            Text='<%# Eval("baozhuanghegao") %>' 
+                                            width="150px" />CM
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bbb">详细信息</td>
+                                    <td>
+                                        包装盒1688链接1：
+                                        <asp:TextBox ID="txtBaozhuanghe1688lianjie1" runat="server" 
+                                            Text='<%# Eval("baozhuanghe1688lianjie1") %>' 
+                                            width="150px" />
+                                        最低起批量1：
+                                        <asp:TextBox ID="txtZuidiqipiliang1" runat="server" 
+                                            Text='<%# Eval("zuidiqipiliang1") %>' 
+                                            width="150px" />
+                                        包装盒价格1：
+                                        <asp:TextBox ID="txtBaozhuanghe1688jiage1" runat="server" 
+                                            Text='<%# Eval("baozhuanghe1688jiage1") %>' 
+                                            width="150px" />
                                     </td>
                                 </tr>
                                 <tr>

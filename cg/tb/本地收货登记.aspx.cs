@@ -32,6 +32,12 @@ namespace WebApplication11.cg.tb
             public string gao { get; set; }
             public string zhongliang { get; set; }
             public string sjtype1 { get; set; }
+            public string baozhuanghechang { get; set; }
+            public string baozhuanghekuan { get; set; }
+            public string baozhuanghegao { get; set; }
+            public string baozhuanghe1688lianjie1 { get; set; }
+            public string zuidiqipiliang1 { get; set; }
+            public string baozhuanghe1688jiage1 { get; set; }
             public string baozhuanghe { get; set; }
             public bool IsValid { get; set; }
             public string ErrorMessage { get; set; }
@@ -186,7 +192,7 @@ namespace WebApplication11.cg.tb
                 int bPage= (CurrentPage-1)*PageSize+1;
                 int ePage = bPage + PageSize-1;
                 string sql = $@"select * from(
-                SELECT c.*,ROW_NUMBER() OVER (ORDER BY c.YunDanHao DESC) AS RowNum, w.haiwaicangxitongbianma,w.chang,w.kuan,w.gao,w.zhongliang,w.sjtype sjtype1,w.logistics_product_type_code_pt_gd,w.logistics_product_type_code_gd_id,w.logistics_product_type_code_gd_th,w.baozhuanghe,w.baozhuanghe1688lianjie1,w.zuidiqipiliang1,w.baozhuanghe1688jiage1,w.id pswid FROM S1688Order c OUTER APPLY ( SELECT TOP 1 * FROM Purchase_Sales_Warehouse w WHERE (c.Skuid IS NOT NULL AND c.Skuid = w.SkuID_1688) OR (c.Skuid IS NULL AND c.OfferID = w.OfferID_1688) ORDER BY  CASE WHEN c.Skuid IS NOT NULL THEN 1 ELSE 2 END ) w 
+                SELECT c.*,ROW_NUMBER() OVER (ORDER BY c.YunDanHao DESC) AS RowNum, w.haiwaicangxitongbianma,w.chang,w.kuan,w.gao,w.zhongliang,w.sjtype sjtype1,w.logistics_product_type_code_pt_gd,w.logistics_product_type_code_gd_id,w.logistics_product_type_code_gd_th,w.baozhuanghe,w.baozhuanghe1688lianjie1,w.zuidiqipiliang1,w.baozhuanghe1688jiage1,w.id pswid,w.baozhuanghechang,w.baozhuanghekuan,w.baozhuanghegao FROM S1688Order c OUTER APPLY ( SELECT TOP 1 * FROM Purchase_Sales_Warehouse w WHERE (c.Skuid IS NOT NULL AND c.Skuid = w.SkuID_1688) OR (c.Skuid IS NULL AND c.OfferID = w.OfferID_1688) ORDER BY  CASE WHEN c.Skuid IS NOT NULL THEN 1 ELSE 2 END ) w 
                 WHERE {whereCondition} ) bb WHERE RowNum BETWEEN "+bPage+" AND "+ePage;
                 //string sql = $@"select * from(
                 //    SELECT *,ROW_NUMBER() OVER (ORDER BY c.YunDanHao DESC) AS RowNum FROM {TABLE_S1688_ORDER} c
@@ -458,13 +464,28 @@ namespace WebApplication11.cg.tb
                 var txtZhongliang = item.FindControl("txtZhongliang") as TextBox;
                 var ddlSjtype1 = item.FindControl("ddlSjtype1") as DropDownList;
                 var ddlBaozhuanghe = item.FindControl("ddlBaozhuanghe") as DropDownList;
+                
+                var txtBaozhuanghechang = item.FindControl("txtBaozhuanghechang") as TextBox;
+                var txtBaozhuanghekuan = item.FindControl("txtBaozhuanghekuan") as TextBox;
+                var txtBaozhuanghegao = item.FindControl("txtBaozhuanghegao") as TextBox;
+                var txtBaozhuanghe1688lianjie1 = item.FindControl("txtBaozhuanghe1688lianjie1") as TextBox;
+                var txtZuidiqipiliang1 = item.FindControl("txtZuidiqipiliang1") as TextBox;
+                var txtBaozhuanghe1688jiage1 = item.FindControl("txtBaozhuanghe1688jiage1") as TextBox;
+
                 saveData.pswid=hidPswId.Value?.Trim() ?? "";
-                saveData.chang = StrToInt(txtChang.Text);
-                saveData.kuan = StrToInt(txtKuan.Text);
-                saveData.gao = StrToInt(txtGao.Text);
-                saveData.zhongliang = StrToInt(txtZhongliang.Text);
-                saveData.sjtype1 = ddlSjtype1.Text;
-                saveData.baozhuanghe = ddlBaozhuanghe.Text;
+                saveData.chang = txtChang.Text;
+                saveData.kuan = txtKuan.Text;
+                saveData.gao = txtGao.Text;
+                saveData.zhongliang = txtZhongliang.Text;
+                saveData.sjtype1 = ddlSjtype1.SelectedValue;
+                saveData.baozhuanghe = ddlBaozhuanghe.SelectedValue;
+
+                saveData.baozhuanghechang= txtBaozhuanghechang.Text;
+                saveData.baozhuanghekuan = txtBaozhuanghekuan.Text;
+                saveData.baozhuanghegao = txtBaozhuanghegao.Text;
+                saveData.baozhuanghe1688lianjie1 = txtBaozhuanghe1688lianjie1.Text;
+                saveData.zuidiqipiliang1 = txtZuidiqipiliang1.Text;
+                saveData.baozhuanghe1688jiage1 = txtBaozhuanghe1688jiage1.Text;
                 #endregion
 
 
@@ -539,7 +560,7 @@ namespace WebApplication11.cg.tb
                 }
                 catch (Exception)
                 {
-                    saveData.ErrorMessage = "文件异常";
+                    //saveData.ErrorMessage = "文件异常";
                 }
                 #endregion
 
@@ -613,16 +634,51 @@ namespace WebApplication11.cg.tb
                 #endregion
 
                 #region 更新表Purchase_Sales_Warehouse
-                string sqlPsw = "update Purchase_Sales_Warehouse set chang=" + saveData.chang + ",kuan=" + saveData.kuan + ",gao=" + saveData.gao + ",zhongliang="+saveData.zhongliang+ ",sjtype='"+saveData.sjtype1+"',baozhuanghe='"+saveData.baozhuanghe+"' where id =" + saveData.pswid;
+                string sqlPsw = "update Purchase_Sales_Warehouse set chang='" + saveData.chang + "',kuan='" + saveData.kuan + "',gao='" + saveData.gao + "',zhongliang='" + saveData.zhongliang+ "',sjtype='" + saveData.sjtype1+"',baozhuanghe='" +
+                    ""+saveData.baozhuanghe+ "',baozhuanghechang='"+ saveData.baozhuanghechang + "',baozhuanghekuan='"+saveData.baozhuanghekuan + "',baozhuanghegao='"+saveData.baozhuanghegao + "',baozhuanghe1688lianjie1='"+ saveData.baozhuanghe1688lianjie1 + "',zuidiqipiliang1='"+saveData.zuidiqipiliang1 + "',baozhuanghe1688jiage1='"+saveData.baozhuanghe1688jiage1 + "' where id =" + saveData.pswid;
                 access_sql.DoSql(sqlPsw);
                 #endregion
                 //string whereCondition = $"caigoudanhao = '{saveData.Caigoudanhao.Replace("'", "''")}' AND SKUID_ID = '{saveData.SKUID_ID.Replace("'", "''")}'";
 
                 try
                 {
+                    string whereTj = "";
                     if (saveData.sku_img != null && saveData.sku_img.Length > 4)
                     {
-                        string sql = "update S1688Order set sku_img='" + saveData.sku_img + "',pimage='" + saveData.pimage + "',video='" + saveData.video + "' where id=" + saveData.id;
+                        if (whereTj.Length > 5)
+                        {
+                            whereTj += ",sku_img='" + saveData.sku_img + "'";
+                        }
+                        else
+                        {
+                            whereTj += "sku_img='" + saveData.sku_img + "'";
+                        }
+                    }
+                    if (saveData.pimage != null && saveData.pimage.Length > 4)
+                    {
+                        if (whereTj.Length > 5)
+                        {
+                            whereTj += ",pimage='" + saveData.pimage + "'";
+                        }
+                        else
+                        {
+                            whereTj += "pimage='" + saveData.pimage + "'";
+                        }
+                    }
+                    if (saveData.video != null && saveData.video.Length > 4)
+                    {
+                        if (whereTj.Length > 5)
+                        {
+                            whereTj += ",video='" + saveData.video + "'";
+                        }
+                        else
+                        {
+                            whereTj += "video='" + saveData.video + "'";
+                        }
+                    }
+                    if (whereTj.Length > 5)
+                    {
+                        string sql = "update S1688Order set " + whereTj + " where id=" + saveData.id;
                         access_sql.DoSql(sql);
                     }
                 }
