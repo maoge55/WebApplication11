@@ -289,31 +289,19 @@ namespace WebApplication11.cg
                 if (uid == "19")
                 {
                     虾皮首页信息.Visible = true;
-                    虾皮我的产品概况.Visible = true;
-                    //财务表补充信息.Visible = true;
-                    //财务表补充重量体积.Visible = true;
-                    //莆田发出信息登记.Visible = true;
-                    //广东发出信息登记.Visible = true;
-                    //海运运费登记.Visible = true;
-                    //海外仓到仓数量登记.Visible = true;
-                    入仓产品图片视频.Visible = true;
-                    财务表.Visible = true;
-
-                    阿里狗找货源.Visible = true;
-                    阿里狗拉黑链接.Visible = true;
-                    阿里狗订单.Visible = true;
-                    阿里狗订单查货源.Visible = true;
-                    阿里狗首页信息.Visible = true;
-                    阿里狗买家消息.Visible = true;
-                    阿里狗买家纠纷.Visible = true;
-                    手动广告选品.Visible = true;
-                    虾皮菲律宾广告产品找货源.Visible = true;
+                    订单数据展示.Visible = true;
                     广告测品订单.Visible = true;
+                    本地收货登记.Visible = true;
+                    残次品退换货.Visible = true;
                     头程物流表.Visible = true;
                     采购销售海外仓数据匹配.Visible = true;
                     _1688采购记录检索.Visible = true;
                     货源补充体积_重量_包装等.Visible = true;
+                    采购单_印尼_采购员.Visible = true;
                     采集数据_1688_运营.Visible = true;
+                    头程物流价格_运营.Visible = true;
+                    广告测品订单.Visible = true;
+                    头程物流表.Visible = true;
                     店铺资料管理_运营.Visible = true;
                     菲律宾shopee数据处理_运营.Visible = true;
                 }
