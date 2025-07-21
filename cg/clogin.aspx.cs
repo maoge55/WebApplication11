@@ -115,7 +115,7 @@ namespace WebApplication11
                     HttpContext.Current.Response.Cookies.Add(uid);
 
 
-                    if (ds.Tables[0].Rows[0]["id"].ToString() == "6" || ds.Tables[0].Rows[0]["id"].ToString() == "8" || ds.Tables[0].Rows[0]["id"].ToString() == "9" || ds.Tables[0].Rows[0]["id"].ToString() == "10" || ds.Tables[0].Rows[0]["id"].ToString() == "11" || ds.Tables[0].Rows[0]["id"].ToString() == "12" || ds.Tables[0].Rows[0]["id"].ToString() == "13" || ds.Tables[0].Rows[0]["id"].ToString() == "14" || ds.Tables[0].Rows[0]["id"].ToString() == "15" || ds.Tables[0].Rows[0]["id"].ToString() == "16" || ds.Tables[0].Rows[0]["id"].ToString() == "17" || ds.Tables[0].Rows[0]["id"].ToString() == "18" || ds.Tables[0].Rows[0]["id"].ToString() == "19" || ds.Tables[0].Rows[0]["id"].ToString() == "22" || ds.Tables[0].Rows[0]["id"].ToString() == "21" )
+                    if (ds.Tables[0].Rows[0]["id"].ToString() == "6" || ds.Tables[0].Rows[0]["id"].ToString() == "8" || ds.Tables[0].Rows[0]["id"].ToString() == "9" || ds.Tables[0].Rows[0]["id"].ToString() == "10" || ds.Tables[0].Rows[0]["id"].ToString() == "11" || ds.Tables[0].Rows[0]["id"].ToString() == "12" || ds.Tables[0].Rows[0]["id"].ToString() == "13" || ds.Tables[0].Rows[0]["id"].ToString() == "14" || ds.Tables[0].Rows[0]["id"].ToString() == "15" || ds.Tables[0].Rows[0]["id"].ToString() == "16" || ds.Tables[0].Rows[0]["id"].ToString() == "17" || ds.Tables[0].Rows[0]["id"].ToString() == "18" || ds.Tables[0].Rows[0]["id"].ToString() == "19" || ds.Tables[0].Rows[0]["id"].ToString() == "22" || ds.Tables[0].Rows[0]["id"].ToString() == "21" || ds.Tables[0].Rows[0]["id"].ToString() == "23")
                     {
                         Response.Redirect("/cg/main.aspx");
                     }
