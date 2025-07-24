@@ -148,7 +148,7 @@ namespace WebApplication11.cg
                     采集数据_1688_运营.Visible = true;
                     印尼出单数据_转_泰国广告测品.Visible = true;
                     头程物流价格_运营.Visible = true;
-                    店铺资料管理_运营.Visible = true;
+                    //店铺资料管理_运营.Visible = true;
                     订单数据展示.Visible = true;
                     列名总表_管理员.Visible = true;
                     菲律宾shopee数据处理_运营.Visible = true;
@@ -282,7 +282,7 @@ namespace WebApplication11.cg
                     //手动广告选品.Visible = true;
                     头程物流表.Visible = true;
                     采集数据_1688_运营.Visible = true;
-                    店铺资料管理_运营.Visible = true;
+                    //店铺资料管理_运营.Visible = true;
                     菲律宾shopee数据处理_运营.Visible = true;
 
                 }
@@ -302,7 +302,7 @@ namespace WebApplication11.cg
                     头程物流价格_运营.Visible = true;
                     广告测品订单.Visible = true;
                     头程物流表.Visible = true;
-                    店铺资料管理_运营.Visible = true;
+                    //店铺资料管理_运营.Visible = true;
                     菲律宾shopee数据处理_运营.Visible = true;
                 }
                 if (uid == "20")
