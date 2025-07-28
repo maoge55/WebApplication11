@@ -223,6 +223,7 @@
                                         <asp:ListItem Value="cym789">cym789</asp:ListItem>
                                         <asp:ListItem Value="wzm123">wzm123</asp:ListItem>
                                         <asp:ListItem Value="cai-8897">cai-8897</asp:ListItem>
+                                        <asp:ListItem Value="zyd618">zyd618</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 
@@ -372,6 +373,7 @@
                                             <asp:ListItem Value="cym789">cym789</asp:ListItem>
                                             <asp:ListItem Value="wzm123">wzm123</asp:ListItem>
                                             <asp:ListItem Value="cai-8897">cai-8897</asp:ListItem>
+                                            <asp:ListItem Value="zyd618">zyd618</asp:ListItem>
                                           </asp:DropDownList>
                                     </td>
                                 </tr>
