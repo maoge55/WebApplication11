@@ -87,6 +87,15 @@ namespace WebApplication11.cg.tb
         protected global::System.Web.UI.WebControls.Literal Literal1;
 
         /// <summary>
+        /// rplb 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rplb;
+
+        /// <summary>
         /// litPageInfo 控件。
         /// </summary>
         /// <remarks>
@@ -130,41 +139,5 @@ namespace WebApplication11.cg.tb
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnJump;
-
-        /// <summary>
-        /// rplb 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rplb;
-
-        /// <summary>
-        /// litPageInfo2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litPageInfo2;
-
-        /// <summary>
-        /// btnPrev2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrev2;
-
-        /// <summary>
-        /// btnNext2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNext2;
     }
 }

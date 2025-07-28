@@ -24,7 +24,7 @@ namespace WebApplication11.cg
                     u = HttpContext.Current.Request.Cookies["cu"].Value;
                     p = HttpContext.Current.Request.Cookies["cp"].Value;
                     uid = HttpContext.Current.Request.Cookies["cuid"].Value;
-                    if (uid != "9" && uid != "6" && uid != "12" && uid != "10" && uid != "11" && uid != "13" && uid != "16" && uid != "17" && uid != "18" && uid != "19")
+                    if (uid != "9" && uid != "6" && uid != "12" && uid != "10" && uid != "11" && uid != "13" && uid != "16" && uid != "17" && uid != "18" && uid != "19" && uid!="22")
                     {
 
                         Response.Redirect("/cg/clogin.aspx");

@@ -341,6 +341,9 @@ namespace WebApplication11.cg
                     广告测品订单.Visible = true;
                     采集数据_1688_运营.Visible = true;
                     虾皮首页信息.Visible = true;
+                    广告测品订单.Visible = true;
+                    虾皮首页信息.Visible = true;
+                    
 
                 }
 
