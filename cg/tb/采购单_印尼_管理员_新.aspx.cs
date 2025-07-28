@@ -70,12 +70,42 @@ namespace WebApplication11.cg.tb
             if (!IsPostBack)
             {
                 InitializePage();
+                rplb.ItemDataBound += rplb_ItemDataBound;
             }
         }
+
+            
 
         private void InitializePage()
         {
             lits.Text = "请输入商家编码进行查询";
+        }
+
+
+        /// <summary>
+        /// Repeater 每行绑定完毕后，给 ddlYYBM 安全地设置 SelectedValue
+        /// </summary>
+        protected void rplb_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item
+             || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var ddl = (DropDownList)e.Item.FindControl("ddlYYBM");
+                string yybmValue = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "YYBM"));
+
+                // 如果数据库值在静态列表里不存在，则先加一个选项
+                if (!string.IsNullOrEmpty(yybmValue)
+                 && ddl.Items.FindByValue(yybmValue) == null)
+                {
+                    ddl.Items.Add(new ListItem(yybmValue, yybmValue));
+                }
+
+                // 尝试设置选中值，失败时回退到“请选择”
+                if (ddl.Items.FindByValue(yybmValue) != null)
+                    ddl.SelectedValue = yybmValue;
+                else
+                    ddl.SelectedIndex = 0;
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

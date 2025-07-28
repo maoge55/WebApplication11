@@ -365,15 +365,14 @@
                                 <tr>
                                     <td class="bbb">运营编码</td>
                                     <td>
-                                        <asp:DropDownList ID="ddlYYBM" runat="server" 
-                                            SelectedValue='<%# Eval("YYBM") %>'>
+                                        <asp:DropDownList ID="ddlYYBM" runat="server">
                                             <asp:ListItem Value="">请选择</asp:ListItem>
                                             <asp:ListItem Value="id8897">id8897</asp:ListItem>
                                             <asp:ListItem Value="th8888">th8888</asp:ListItem>
                                             <asp:ListItem Value="cym789">cym789</asp:ListItem>
                                             <asp:ListItem Value="wzm123">wzm123</asp:ListItem>
                                             <asp:ListItem Value="cai-8897">cai-8897</asp:ListItem>
-                                        </asp:DropDownList>
+                                          </asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
