@@ -106,6 +106,7 @@
                      <option value="isPODPubilsh">POD产品自动发布</option>
                      <option value="isComPublish">虾皮普货自动上数据</option>
                      <option value="isGetOrdANDPirce">采集订单和库存</option>
+                     <option value="is_add_affiliate">自动邀请达人</option>
                  </select>&nbsp;
                  任务状态：
                  <select id="renwu_zt" name="renwu_zt">
