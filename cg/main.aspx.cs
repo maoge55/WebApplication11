@@ -343,6 +343,7 @@ namespace WebApplication11.cg
                     虾皮首页信息.Visible = true;
                     广告测品订单.Visible = true;
                     虾皮首页信息.Visible = true;
+                    头程物流价格_运营.Visible = true;
                     
 
                 }
