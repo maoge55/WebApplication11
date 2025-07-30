@@ -208,7 +208,10 @@ namespace WebApplication11.cg
             {
                 where += " and  rucangyinnibiaoti like '%" + txtrucangyinnibiaoti.Text.Trim().Replace("'", "''") + "%' ";
             }
-
+            if (txtOfferid.Text.Trim() != "")
+            {
+                where += " and  Offer_ID = '" + txtOfferid.Text.Trim().Replace("'", "''") + "' ";
+            }
             DataSet ds = access_sql.GreatDs("SELECT c1.* FROM caiwu c1 INNER JOIN (SELECT SKU_ID,MIN(cid) AS min_id FROM caiwu WHERE rucangitemid in (select rucangitemid from caiwu " + where + " group by rucangitemid) GROUP BY SKU_ID) c2 ON c1.cid = c2.min_id");
             if (access_sql.yzTable(ds))
             {

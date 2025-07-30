@@ -66,6 +66,9 @@
                 &nbsp;
                 入仓ITEMID：<asp:TextBox ID="txtrucangITEMID" runat="server"></asp:TextBox>
                 &nbsp;
+
+                1688OfferID：<asp:TextBox ID="txtOfferid" runat="server"></asp:TextBox>
+                &nbsp;
                 入仓印尼标题：<asp:TextBox ID="txtrucangyinnibiaoti" runat="server"></asp:TextBox>&nbsp;
                 <asp:Button ID="Button3" runat="server" Text="查找" OnClick="Button3_Click3" />
                 <br />
