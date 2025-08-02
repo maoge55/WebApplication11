@@ -344,7 +344,7 @@ namespace WebApplication11.cg
                     广告测品订单.Visible = true;
                     虾皮首页信息.Visible = true;
                     头程物流价格_运营.Visible = true;
-                    
+                    货源补充体积_重量_包装等.Visible = true;
 
                 }
 
