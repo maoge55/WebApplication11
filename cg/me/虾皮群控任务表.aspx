@@ -107,7 +107,7 @@
                      <option value="isComPublish">虾皮普货自动上数据</option>
                      <option value="isGetOrdANDPirce">采集订单和库存</option>
                      <option value="is_add_affiliate">自动邀请达人</option>
-                     <option value="is_add_affiliate">虾皮自动发布大数据</option>
+                     <option value="is_publish_bigdata">虾皮自动发布大数据</option>
 
                  </select>&nbsp;
                  任务状态：
