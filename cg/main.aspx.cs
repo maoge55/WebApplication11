@@ -289,7 +289,7 @@ namespace WebApplication11.cg
                 if (uid == "19")
                 {
                     虾皮首页信息.Visible = true;
-                    订单数据展示.Visible = true;
+                    //订单数据展示.Visible = true;
                     //广告测品订单.Visible = true;
                     本地收货登记.Visible = true;
                     残次品退换货.Visible = true;
