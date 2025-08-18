@@ -298,12 +298,12 @@ namespace WebApplication11.cg
                     _1688采购记录检索.Visible = true;
                     货源补充体积_重量_包装等.Visible = true;
                     采购单_印尼_采购员.Visible = true;
-                    采集数据_1688_运营.Visible = true;
+                    //采集数据_1688_运营.Visible = true;
                     头程物流价格_运营.Visible = true;
                     广告测品订单.Visible = true;
                     头程物流表.Visible = true;
                     //店铺资料管理_运营.Visible = true;
-                    菲律宾shopee数据处理_运营.Visible = true;
+                    //菲律宾shopee数据处理_运营.Visible = true;
                 }
                 if (uid == "20")
                 {
