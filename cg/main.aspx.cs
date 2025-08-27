@@ -153,6 +153,7 @@ namespace WebApplication11.cg
                     列名总表_管理员.Visible = true;
                     菲律宾shopee数据处理_运营.Visible = true;
                     阿里狗订单.Visible = true;
+                    出错任务.Visible = true;
                 }
                 if (uid == "8")
                 {
