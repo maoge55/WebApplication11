@@ -90,6 +90,7 @@
                      <option value="isCreAd">创建新广告</option>
                      <option value="is_publish_bigdata">虾皮自动发布大数据</option>
                      <option value="is_cj_bigll">采集大数据流量报表</option>
+                     <option value="is_ad_move">广告测品转平台</option>
                      <option value="is_paused_testad">暂停测品广告</option>
                      <option value="isDelete">删除店铺产品</option>
                      <option value="isDraft">上架草稿箱</option>
