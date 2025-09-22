@@ -171,7 +171,9 @@
                                 <%# Eval("visitors")%>
                             </td>
                             <td style="text-align: center">
-                                <%# (float.Parse( Eval("visitors_trend").ToString())*100).ToString("0.00")%>% 
+                                <%# (Eval("visitors_trend") == null || Eval("visitors_trend").ToString() == "" 
+                                        ? "0.00" 
+                                        : (float.Parse(Eval("visitors_trend").ToString()) * 100).ToString("0.00")) %>%
                                
                             </td>
                             <td style="text-align: center">
