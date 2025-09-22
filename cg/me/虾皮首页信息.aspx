@@ -188,17 +188,19 @@
                                 <%# Eval("orders")%>
                             </td>
                             <td style="text-align: center">
-                                <%# (float.Parse( Eval("orders_trend").ToString())*100).ToString("0.00")%>% 
-                          
-                               
+                                <%# (Eval("orders_trend") == null || Eval("orders_trend").ToString() == "" 
+                                        ? "0.00" 
+                                        : (float.Parse(Eval("orders_trend").ToString()) * 100).ToString("0.00")) %>%   
                             </td>
                             <td style="text-align: center">
-                                <%# (float.Parse( Eval("conversion_rate").ToString())*100).ToString("0.00")%>% 
+                                <%# (Eval("conversion_rate") == null || Eval("conversion_rate").ToString() == "" 
+                                        ? "0.00" 
+                                        : (float.Parse(Eval("conversion_rate").ToString()) * 100).ToString("0.00")) %>%
                             </td>
                             <td style="text-align: center">
-                                <%# (float.Parse( Eval("conversion_rate_trend").ToString())*100).ToString("0.00")%>% 
-                            
-                               
+                                    <%# (Eval("conversion_rate_trend") == null || Eval("conversion_rate_trend").ToString() == "" 
+                                        ? "0.00" 
+                                        : (float.Parse(Eval("conversion_rate_trend").ToString()) * 100).ToString("0.00")) %>%
                             </td>
 
 
