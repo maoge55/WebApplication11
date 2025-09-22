@@ -110,7 +110,7 @@
                     <td>访客</td>
                     <td>访客趋势</td>
                     <td>页面访问量</td>
-                    <td>页面访问量趋势</td>
+                    <td>KYC</td>
                     <td>当日订单</td>
                     <td>当日订单趋势</td>
                     <td>转化率</td>
@@ -178,7 +178,7 @@
                                 <%# Eval("page_views")%>
                             </td>
                             <td style="text-align: center">
-                                <%# (float.Parse( Eval("page_views_trend").ToString())*100).ToString("0.00")%>% 
+                                <%# Eval("KYC")%>
                             
                                 
                             </td>
