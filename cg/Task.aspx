@@ -106,8 +106,8 @@
                         <asp:DropDownList ID="ddlPosition" runat="server"
                             SelectedValue='<%# (Eval("position") != null && (Eval("position").ToString() == "1" || Eval("position").ToString() == "-1")) 
                                 ? Eval("position").ToString() : "-1" %>'>
-                            <asp:ListItem Text="显示" Value="-1"></asp:ListItem>
-                            <asp:ListItem Text="隐藏" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="显示" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="隐藏" Value="-1"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td><asp:TextBox ID="txtmutilTiming" runat="server" Text='<%# Eval("mutilTiming") %>' /></td>
