@@ -48,7 +48,7 @@
             <ItemTemplate>
                 <tr>
                     <td><%# Eval("id") %></td>
-                    <td><asp:TextBox ID="txttName" runat="server" Text='<%# Eval("tName") %>' /></td>
+                    <td><asp:Label ID="lblTaskName" runat="server" Text='<%# Eval("tanme") %>' Style="white-space:normal;" /></td>
                     <td><asp:TextBox ID="txtShopClass" runat="server" Text='<%# Eval("ShopClass") %>' /></td>
                     <td><asp:TextBox ID="txttcount" runat="server" Text='<%# Eval("tcount") %>' /></td>
                     <td>

@@ -15,7 +15,7 @@ namespace WebApplication11.cg
 
         private void BindData()
         {
-            DataSet ds = access_sql.GreatDs("SELECT * FROM dbo.Task ORDER BY id DESC");
+            DataSet ds = access_sql.GreatDs("SELECT * FROM dbo.Task ORDER BY id");
             repTask.DataSource = ds;
             repTask.DataBind();
         }
