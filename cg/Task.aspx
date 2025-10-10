@@ -9,13 +9,15 @@
         th, td { border: 1px solid #ccc; padding: 6px; text-align: center; vertical-align: top; }
         th { background-color: #f3f3f3; }
         input[type=text], textarea { width: 95%; }
-        select { width: 100px; }
+        select { width: 120px; }
         .btn { margin: 2px; padding: 3px 8px; border: none; border-radius: 3px; cursor: pointer; }
         .start { background: #4CAF50; color: #fff; }
         .continue { background: #2196F3; color: #fff; }
         .close { background: #f44336; color: #fff; }
         .save { background: #ff9800; color: #fff; }
+        .saveall { background: #673ab7; color: #fff; }
     </style>
+
     <script type="text/javascript">
         // 自动调整 TextBox 高度
         function autoResize(textarea) {
@@ -37,9 +39,10 @@
     <form id="form1" runat="server">
         <h2>任务管理</h2>
 
-        <!-- 全局过滤按钮 -->
+        <!-- 全局操作按钮 -->
         <asp:Button ID="btnFilterPosition" runat="server" Text="只显示 position!=-1" OnClick="btnFilterPosition_Click" CssClass="btn" />
         <asp:Button ID="btnShowAll" runat="server" Text="显示全部" OnClick="btnShowAll_Click" CssClass="btn" />
+        <asp:Button ID="btnSaveAll" runat="server" Text="全部保存" OnClick="btnSaveAll_Click" CssClass="btn saveall" />
 
         <asp:Repeater ID="repTask" runat="server" OnItemCommand="repTask_ItemCommand">
             <HeaderTemplate>
@@ -70,8 +73,8 @@
                 <tr>
                     <td><%# Eval("id") %></td>
                     <td>
-                        <asp:TextBox ID="txttName" runat="server" 
-                            Text='<%# Eval("tName") %>' 
+                        <asp:TextBox ID="txttName" runat="server"
+                            Text='<%# Eval("tName") %>'
                             TextMode="MultiLine"
                             Width="100%"
                             Rows="1"
@@ -93,8 +96,8 @@
                     <td><asp:TextBox ID="txtLastEndTime" runat="server" Text='<%# Eval("LastEndTime") %>' /></td>
                     <td><asp:TextBox ID="txtLastHouTaiID" runat="server" Text='<%# Eval("LastHouTaiID") %>' /></td>
                     <td>
-                        <asp:TextBox ID="txtiszd" runat="server" 
-                            Text='<%# Eval("iszd") %>' 
+                        <asp:TextBox ID="txtiszd" runat="server"
+                            Text='<%# Eval("iszd") %>'
                             TextMode="MultiLine"
                             Width="100%"
                             Rows="1"
@@ -107,7 +110,20 @@
                     <td><asp:TextBox ID="txtisMulti" runat="server" Text='<%# Eval("isMulti") %>' /></td>
                     <td><asp:TextBox ID="txtextraParam" runat="server" Text='<%# Eval("extraParam") %>' /></td>
                     <td><asp:TextBox ID="txttiming" runat="server" Text='<%# Eval("timing") %>' /></td>
-                    <td><asp:TextBox ID="txtgtName" runat="server" Text='<%# Eval("gtName") %>' /></td>
+
+                    <!-- ✅ gtName 改成下拉框 -->
+                    <td>
+                        <asp:DropDownList ID="ddlgtName" runat="server"
+                            SelectedValue='<%# Eval("gtName") %>'>
+                            <asp:ListItem Text="虾皮任务(采集)" Value="虾皮任务(采集)"></asp:ListItem>
+                            <asp:ListItem Text="虾皮任务(采集2)" Value="虾皮任务(采集2)"></asp:ListItem>
+                            <asp:ListItem Text="虾皮任务(操作)" Value="虾皮任务(操作)"></asp:ListItem>
+                            <asp:ListItem Text="虾皮任务(操作2)" Value="虾皮任务(操作2)"></asp:ListItem>
+                            <asp:ListItem Text="采集功能" Value="采集功能"></asp:ListItem>
+                            <asp:ListItem Text="DeepSeek" Value="DeepSeek"></asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+
                     <td>
                         <asp:DropDownList ID="ddlPosition" runat="server"
                             SelectedValue='<%# (Eval("position") != null && (Eval("position").ToString() == "1" || Eval("position").ToString() == "-1")) 
@@ -115,7 +131,6 @@
                             <asp:ListItem Text="显示" Value="1"></asp:ListItem>
                             <asp:ListItem Text="隐藏" Value="-1"></asp:ListItem>
                         </asp:DropDownList>
-
                     </td>
                     <td><asp:TextBox ID="txtmutilTiming" runat="server" Text='<%# Eval("mutilTiming") %>' /></td>
                     <td>

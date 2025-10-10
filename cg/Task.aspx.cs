@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace WebApplication11.cg
@@ -50,7 +51,49 @@ namespace WebApplication11.cg
         {
             BindData(false);
         }
+        // ✅ 新增 — 全部保存按钮
+        protected void btnSaveAll_Click(object sender, EventArgs e)
+        {
+            foreach (RepeaterItem item in repTask.Items)
+            {
+                int id = Convert.ToInt32(((LiteralControl)item.Controls[1]).Text);
+                SaveRow(item, id);
+            }
+            BindData();
+        }
+        private void SaveRow(RepeaterItem item, int id)
+        {
+            string[] cols = { "tName", "ShopClass", "tcount", "pt", "logPath", "LastRunTime", "LastEndTime", "LastHouTaiID", "iszd", "FuncName", "isMulti", "extraParam", "timing", "gtName", "position", "mutilTiming" };
+            object[] vals = {
+                ((TextBox)item.FindControl("txttName")).Text,
+                ((TextBox)item.FindControl("txtShopClass")).Text,
+                ((TextBox)item.FindControl("txttcount")).Text,
+                ((TextBox)item.FindControl("txtpt")).Text,
+                ((TextBox)item.FindControl("txtlogPath")).Text,
+                ((TextBox)item.FindControl("txtLastRunTime")).Text,
+                ((TextBox)item.FindControl("txtLastEndTime")).Text,
+                ((TextBox)item.FindControl("txtLastHouTaiID")).Text,
+                ((TextBox)item.FindControl("txtiszd")).Text,
+                ((TextBox)item.FindControl("txtFuncName")).Text,
+                ((TextBox)item.FindControl("txtisMulti")).Text,
+                ((TextBox)item.FindControl("txtextraParam")).Text,
+                ((TextBox)item.FindControl("txttiming")).Text,
+                ((DropDownList)item.FindControl("ddlgtName")).SelectedValue,
+                ((DropDownList)item.FindControl("ddlPosition")).SelectedValue,
+                ((TextBox)item.FindControl("txtmutilTiming")).Text
+            };
 
+            // mutilTiming 同步 timing
+            string mutilTiming = vals[15]?.ToString() ?? "";
+            if (!string.IsNullOrEmpty(mutilTiming) && mutilTiming.Contains("|"))
+            {
+                var parts = mutilTiming.Split('|')
+                                       .Select(s => { int n; return int.TryParse(s, out n) ? n : int.MaxValue; });
+                vals[12] = parts.Min();
+            }
+
+            access_sql.T_Update_ExecSql(cols, vals, "Task", $"id={id}");
+        }
         protected void repTask_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
