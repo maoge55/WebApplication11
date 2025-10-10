@@ -114,13 +114,16 @@
                     <!-- ✅ gtName 改成下拉框 -->
                     <td>
                         <asp:DropDownList ID="ddlgtName" runat="server"
-                            SelectedValue='<%# Eval("gtName") %>'>
+                            SelectedValue='<%# (Eval("gtName").ToString()=="虾皮任务(采集)" || Eval("gtName").ToString()=="虾皮任务(采集2)"
+                                || Eval("gtName").ToString()=="虾皮任务(操作)" || Eval("gtName").ToString()=="采集功能" 
+                                || Eval("gtName").ToString()=="DeepSeek" )?Eval("gtName").ToString():"其他任务" %>'>
                             <asp:ListItem Text="虾皮任务(采集)" Value="虾皮任务(采集)"></asp:ListItem>
                             <asp:ListItem Text="虾皮任务(采集2)" Value="虾皮任务(采集2)"></asp:ListItem>
                             <asp:ListItem Text="虾皮任务(操作)" Value="虾皮任务(操作)"></asp:ListItem>
                             <asp:ListItem Text="虾皮任务(操作2)" Value="虾皮任务(操作2)"></asp:ListItem>
                             <asp:ListItem Text="采集功能" Value="采集功能"></asp:ListItem>
                             <asp:ListItem Text="DeepSeek" Value="DeepSeek"></asp:ListItem>
+                             <asp:ListItem Text="DeepSeek" Value="其他任务"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
 
