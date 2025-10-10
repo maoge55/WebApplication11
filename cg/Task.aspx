@@ -48,7 +48,17 @@
             <ItemTemplate>
                 <tr>
                     <td><%# Eval("id") %></td>
-                    <td><asp:TextBox ID="txttName" runat="server" Text='<%# Eval("tName") %>' TextMode="MultiLine" Width="100%" ReadOnly="true" /></td>
+                    <td>
+                        <asp:TextBox ID="txttName" runat="server" 
+                            Text='<%# Eval("tName") %>' 
+                            TextMode="MultiLine"
+                            Width="100%"
+                            Rows="1"
+                            Style="overflow:hidden;resize:none;white-space:normal;word-break:break-all;"
+                            oninput="autoResize(this)"
+                            ToolTip='<%# Eval("tName") %>'>
+                        </asp:TextBox>
+                    </td>
                     <td><asp:TextBox ID="txtShopClass" runat="server" Text='<%# Eval("ShopClass") %>'  /></td>
                     <td><asp:TextBox ID="txttcount" runat="server" Text='<%# Eval("tcount") %>' /></td>
                     <td>
@@ -61,7 +71,16 @@
                     <td><asp:TextBox ID="txtLastRunTime" runat="server" Text='<%# Eval("LastRunTime") %>' /></td>
                     <td><asp:TextBox ID="txtLastEndTime" runat="server" Text='<%# Eval("LastEndTime") %>' /></td>
                     <td><asp:TextBox ID="txtLastHouTaiID" runat="server" Text='<%# Eval("LastHouTaiID") %>' /></td>
-                    <td><asp:TextBox ID="txtiszd" runat="server" Text='<%# Eval("iszd") %>' /></td>
+                    <td>
+                        <asp:TextBox ID="txtiszd" runat="server" 
+                            Text='<%# Eval("tName") %>' 
+                            TextMode="MultiLine"
+                            Width="100%"
+                            Rows="1"
+                            Style="overflow:hidden;resize:none;white-space:normal;word-break:break-all;"
+                            oninput="autoResize(this)"
+                            ToolTip='<%# Eval("iszd") %>'>
+                        </asp:TextBox>
                     <td><asp:TextBox ID="txtFuncName" runat="server" Text='<%# Eval("FuncName") %>' /></td>
                     <td><asp:TextBox ID="txtisMulti" runat="server" Text='<%# Eval("isMulti") %>' /></td>
                     <td><asp:TextBox ID="txtextraParam" runat="server" Text='<%# Eval("extraParam") %>' /></td>
