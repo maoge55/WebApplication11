@@ -16,6 +16,22 @@
         .close { background: #f44336; color: #fff; }
         .save { background: #ff9800; color: #fff; }
     </style>
+    <script type="text/javascript">
+    // 自动调整 TextBox 高度
+    function autoResize(textarea) {
+        textarea.style.height = 'auto';     // 先重置
+        textarea.style.height = textarea.scrollHeight + 'px'; // 根据内容调整
+    }
+
+    // 页面加载时初始化一次
+    window.addEventListener('load', function() {
+        document.querySelectorAll('textarea, input[type="text"]').forEach(function(t) {
+            if (t.getAttribute('oninput') === 'autoResize(this)') {
+                autoResize(t);
+            }
+        });
+    });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
