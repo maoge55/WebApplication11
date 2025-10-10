@@ -48,8 +48,8 @@
             <ItemTemplate>
                 <tr>
                     <td><%# Eval("id") %></td>
-                    <td><asp:Label ID="lblTaskName" runat="server" Text='<%# Eval("tanme") %>' Style="white-space:normal;" /></td>
-                    <td><asp:TextBox ID="txtShopClass" runat="server" Text='<%# Eval("ShopClass") %>' /></td>
+                    <td><asp:TextBox ID="txttName" runat="server" Text='<%# Eval("tName") %>' TextMode="MultiLine" Width="100%" ReadOnly="true" /></td>
+                    <td><asp:TextBox ID="txtShopClass" runat="server" Text='<%# Eval("ShopClass") %>'  /></td>
                     <td><asp:TextBox ID="txttcount" runat="server" Text='<%# Eval("tcount") %>' /></td>
                     <td>
                         <asp:Button CommandName="start" CssClass="btn start" Text="开始" runat="server" CommandArgument='<%# Eval("id") %>' />
