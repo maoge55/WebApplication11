@@ -6,9 +6,9 @@
     <title>任务管理</title>
     <style>
         table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+        th, td { border: 1px solid #ccc; padding: 6px; text-align: center; vertical-align: top; }
         th { background-color: #f3f3f3; }
-        input[type=text] { width: 95%; }
+        input[type=text], textarea { width: 95%; }
         select { width: 100px; }
         .btn { margin: 2px; padding: 3px 8px; border: none; border-radius: 3px; cursor: pointer; }
         .start { background: #4CAF50; color: #fff; }
@@ -17,25 +17,30 @@
         .save { background: #ff9800; color: #fff; }
     </style>
     <script type="text/javascript">
-    // 自动调整 TextBox 高度
-    function autoResize(textarea) {
-        textarea.style.height = 'auto';     // 先重置
-        textarea.style.height = textarea.scrollHeight + 'px'; // 根据内容调整
-    }
+        // 自动调整 TextBox 高度
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
 
-    // 页面加载时初始化一次
-    window.addEventListener('load', function() {
-        document.querySelectorAll('textarea, input[type="text"]').forEach(function(t) {
-            if (t.getAttribute('oninput') === 'autoResize(this)') {
-                autoResize(t);
-            }
+        // 页面加载时初始化一次
+        window.addEventListener('load', function () {
+            document.querySelectorAll('textarea, input[type="text"]').forEach(function (t) {
+                if (t.getAttribute('oninput') === 'autoResize(this)') {
+                    autoResize(t);
+                }
+            });
         });
-    });
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
         <h2>任务管理</h2>
+
+        <!-- 全局过滤按钮 -->
+        <asp:Button ID="btnFilterPosition" runat="server" Text="只显示 position!=-1" OnClick="btnFilterPosition_Click" CssClass="btn" />
+        <asp:Button ID="btnShowAll" runat="server" Text="显示全部" OnClick="btnShowAll_Click" CssClass="btn" />
+
         <asp:Repeater ID="repTask" runat="server" OnItemCommand="repTask_ItemCommand">
             <HeaderTemplate>
                 <table>
@@ -75,7 +80,7 @@
                             ToolTip='<%# Eval("tName") %>'>
                         </asp:TextBox>
                     </td>
-                    <td><asp:TextBox ID="txtShopClass" runat="server" Text='<%# Eval("ShopClass") %>'  /></td>
+                    <td><asp:TextBox ID="txtShopClass" runat="server" Text='<%# Eval("ShopClass") %>' /></td>
                     <td><asp:TextBox ID="txttcount" runat="server" Text='<%# Eval("tcount") %>' /></td>
                     <td>
                         <asp:Button CommandName="start" CssClass="btn start" Text="开始" runat="server" CommandArgument='<%# Eval("id") %>' />
@@ -89,7 +94,7 @@
                     <td><asp:TextBox ID="txtLastHouTaiID" runat="server" Text='<%# Eval("LastHouTaiID") %>' /></td>
                     <td>
                         <asp:TextBox ID="txtiszd" runat="server" 
-                            Text='<%# Eval("tName") %>' 
+                            Text='<%# Eval("iszd") %>' 
                             TextMode="MultiLine"
                             Width="100%"
                             Rows="1"
@@ -97,6 +102,7 @@
                             oninput="autoResize(this)"
                             ToolTip='<%# Eval("iszd") %>'>
                         </asp:TextBox>
+                    </td>
                     <td><asp:TextBox ID="txtFuncName" runat="server" Text='<%# Eval("FuncName") %>' /></td>
                     <td><asp:TextBox ID="txtisMulti" runat="server" Text='<%# Eval("isMulti") %>' /></td>
                     <td><asp:TextBox ID="txtextraParam" runat="server" Text='<%# Eval("extraParam") %>' /></td>
@@ -104,8 +110,7 @@
                     <td><asp:TextBox ID="txtgtName" runat="server" Text='<%# Eval("gtName") %>' /></td>
                     <td>
                         <asp:DropDownList ID="ddlPosition" runat="server"
-                            SelectedValue='<%# (Eval("position") != null && (Eval("position").ToString() == "1" || Eval("position").ToString() == "-1")) 
-                                ? Eval("position").ToString() : "-1" %>'>
+                            SelectedValue='<%# Eval("position").ToString() %>'>
                             <asp:ListItem Text="显示" Value="1"></asp:ListItem>
                             <asp:ListItem Text="隐藏" Value="-1"></asp:ListItem>
                         </asp:DropDownList>

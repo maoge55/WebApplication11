@@ -7,17 +7,48 @@ namespace WebApplication11.cg
 {
     public partial class Task : System.Web.UI.Page
     {
+        private DataSet dsAll; // 保存全量数据
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+            {
                 BindData();
+            }
         }
 
-        private void BindData()
+        private void BindData(bool onlyPositionNotMinusOne = false)
         {
             DataSet ds = access_sql.GreatDs("SELECT * FROM dbo.Task ORDER BY id");
-            repTask.DataSource = ds;
+
+            dsAll = ds; // 保存全量数据到成员变量
+            ViewState["dsAll"] = dsAll;
+
+            if (onlyPositionNotMinusOne)
+            {
+                DataTable dtFiltered = ds.Tables[0].AsEnumerable()
+                    .Where(row => Convert.ToInt32(row["position"]) != -1)
+                    .CopyToDataTable();
+                repTask.DataSource = dtFiltered;
+            }
+            else
+            {
+                repTask.DataSource = ds.Tables[0];
+            }
+
             repTask.DataBind();
+        }
+
+        // 点击过滤按钮
+        protected void btnFilterPosition_Click(object sender, EventArgs e)
+        {
+            BindData(true);
+        }
+
+        // 点击显示全部按钮
+        protected void btnShowAll_Click(object sender, EventArgs e)
+        {
+            BindData(false);
         }
 
         protected void repTask_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -68,7 +99,9 @@ namespace WebApplication11.cg
             if (!string.IsNullOrEmpty(sql))
                 access_sql.ExecSql(sql);
 
-            BindData();
+            // 重新绑定当前过滤状态
+            bool onlyFiltered = ViewState["dsAllFiltered"] != null && (bool)ViewState["dsAllFiltered"];
+            BindData(onlyFiltered);
         }
     }
 }
