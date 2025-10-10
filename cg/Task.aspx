@@ -123,7 +123,7 @@
                             <asp:ListItem Text="虾皮任务(操作2)" Value="虾皮任务(操作2)"></asp:ListItem>
                             <asp:ListItem Text="采集功能" Value="采集功能"></asp:ListItem>
                             <asp:ListItem Text="DeepSeek" Value="DeepSeek"></asp:ListItem>
-                             <asp:ListItem Text="DeepSeek" Value="其他任务"></asp:ListItem>
+                             <asp:ListItem Text="其他任务" Value="其他任务"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
 
