@@ -71,7 +71,10 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td><%# Eval("id") %></td>
+                    <td>
+                        <asp:HiddenField ID="hfID" runat="server" Value='<%# Eval("id") %>' />
+                        <%# Eval("id") %>
+                    </td>
                     <td>
                         <asp:TextBox ID="txttName" runat="server"
                             Text='<%# Eval("tName") %>'

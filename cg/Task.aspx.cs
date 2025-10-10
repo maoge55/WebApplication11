@@ -56,11 +56,16 @@ namespace WebApplication11.cg
         {
             foreach (RepeaterItem item in repTask.Items)
             {
-                int id = Convert.ToInt32(((LiteralControl)item.Controls[1]).Text);
-                SaveRow(item, id);
+                HiddenField hf = item.FindControl("hfID") as HiddenField;
+                if (hf != null)
+                {
+                    int id = Convert.ToInt32(hf.Value);
+                    SaveRow(item, id);
+                }
             }
             BindData();
         }
+
         private void SaveRow(RepeaterItem item, int id)
         {
             string[] cols = { "tName", "ShopClass", "tcount", "pt", "logPath", "LastRunTime", "LastEndTime", "LastHouTaiID", "iszd", "FuncName", "isMulti", "extraParam", "timing", "gtName", "position", "mutilTiming" };
