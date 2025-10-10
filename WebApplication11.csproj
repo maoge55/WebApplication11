@@ -242,6 +242,7 @@
     <Content Include="cg\me\初次入仓采购.aspx" />
     <Content Include="cg\me\长期入仓采购.aspx" />
     <Content Include="cg\see.aspx" />
+    <Content Include="cg\Task.aspx" />
     <Content Include="cg\tb\SKU优化停售_管理员页面.aspx" />
     <Content Include="cg\tb\产品利润表_印尼_管理员.aspx" />
     <Content Include="cg\tb\列名总表_管理员.aspx" />
@@ -823,6 +824,13 @@
     </Compile>
     <Compile Include="cg\see.aspx.designer.cs">
       <DependentUpon>see.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cg\Task.aspx.cs">
+      <DependentUpon>Task.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cg\Task.aspx.designer.cs">
+      <DependentUpon>Task.aspx</DependentUpon>
     </Compile>
     <Compile Include="cg\tb\SKU优化停售_管理员页面.aspx.cs">
       <DependentUpon>SKU优化停售_管理员页面.aspx</DependentUpon>
