@@ -40,7 +40,7 @@
         <h2>任务管理</h2>
 
         <!-- 全局操作按钮 -->
-        <asp:Button ID="btnFilterPosition" runat="server" Text="只显示 position!=-1" OnClick="btnFilterPosition_Click" CssClass="btn" />
+        <asp:Button ID="btnFilterPosition" runat="server" Text="只显示在用任务" OnClick="btnFilterPosition_Click" CssClass="btn" />
         <asp:Button ID="btnShowAll" runat="server" Text="显示全部" OnClick="btnShowAll_Click" CssClass="btn" />
         <asp:Button ID="btnSaveAll" runat="server" Text="全部保存" OnClick="btnSaveAll_Click" CssClass="btn saveall" />
 
