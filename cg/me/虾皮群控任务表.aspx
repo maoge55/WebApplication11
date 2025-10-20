@@ -89,6 +89,7 @@
                      <option value="is_cj_bigll">采集时段流量报表</option>
                      <option value="isHomeInfo">采集店铺首页</option>
                      <option value="isCreAd">发布广告&广告报表</option>
+                     <option value="is_cj_adsrpt">采集广告报表</option>
                      <option value="is_publish_bigdata">虾皮自动发布大数据</option>
                      <option value="is_ad_move">广告测品转平台</option>
                      <option value="is_paused_testad">暂停测品广告</option>
