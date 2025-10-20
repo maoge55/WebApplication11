@@ -28,7 +28,7 @@ namespace WebApplication11
                 string u = HttpContext.Current.Request.Cookies["cu"].Value;
                 string p = HttpContext.Current.Request.Cookies["cp"].Value;
                 string uid = HttpContext.Current.Request.Cookies["cuid"].Value;
-                if (uid != "9")
+                if (uid != "6" && uid != "9")
                 {
 
 
