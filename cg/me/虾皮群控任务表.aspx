@@ -95,7 +95,8 @@
                      <option value="is_paused_testad">暂停测品广告</option>
                      <option value="isDelete">删除店铺全部产品</option>
                      <option value="isCJMyList">虾皮采集我的产品概况</option>
-                     <option value="isGetOrdANDPirce">采集订单和库存</option>
+                     <option value="isGetOrdANDPirce">虾皮采集后台订单</option>
+                     <option value="is_get_stock">虾皮采集后台库存</option>
                      <option value="is_add_affiliate">自动邀请达人</option>
 
                  </select>&nbsp;
