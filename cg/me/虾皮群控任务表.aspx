@@ -91,6 +91,7 @@
                      <option value="isCreAd">发布广告</option>
                      <option value="is_cj_adsrpt">采集广告报表</option>
                      <option value="is_publish_bigdata">虾皮自动发布大数据</option>
+                     <option value="is_th_copy_right">泰国铺货过滤侵权</option>
                      <option value="is_ad_move">广告测品转平台</option>
                      <option value="is_paused_testad">暂停测品广告</option>
                      <option value="isDelete">删除店铺全部产品</option>
