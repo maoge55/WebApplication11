@@ -12,7 +12,7 @@ namespace WebApplication11.cg.cjt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string imageUrl = Request.QueryString["url"];
+            string imageUrl = HttpUtility.UrlDecode(Request.QueryString["url"]);
             if (string.IsNullOrWhiteSpace(imageUrl) || !Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
             {
                 Response.StatusCode = 400;
