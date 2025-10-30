@@ -98,7 +98,8 @@
                      <option value="isCJMyList">虾皮采集我的产品概况</option>
                      <option value="isGetOrdANDPirce">虾皮采集后台订单</option>
                      <option value="is_get_stock">虾皮采集后台库存</option>
-                     <option value="is_add_affiliate">自动邀请达人</option>
+                     <option value="is_get_stock">虾皮采集后台库存</option>
+                     <option value="is_cj_bal_inc">虾皮采集Income-Balance</option>
 
                  </select>&nbsp;
                  任务状态：
