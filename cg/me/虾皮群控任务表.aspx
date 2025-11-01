@@ -99,6 +99,7 @@
                      <option value="isGetOrdANDPirce">虾皮采集后台订单</option>
                      <option value="is_get_stock">虾皮采集后台库存</option>
                      <option value="yb_cj_bal_inc">虾皮采集Income-Balance</option>
+                     <option value="is_cj_product_overview">虾皮采集ProductOverview</option>
                      <option value="is_add_affiliate">自动邀请达人</option>
 
                  </select>&nbsp;
