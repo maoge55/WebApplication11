@@ -72,7 +72,11 @@
                 国家：
                  <select id="Country" name="Country">
                      <option value="all">全部</option>
-                     <option value="yn">印尼</option>
+                     <option value="印尼">印尼</option>
+                     <option value="泰国">泰国</option>
+                     <option value="马来西亚">马来西亚</option>
+                     <option value="新加坡">新加坡</option>
+                     <option value="越南">越南</option>
                  </select>
                 &nbsp;
                 平台：
@@ -82,6 +86,8 @@
                  </select>
                 &nbsp;
                 商家编码：<input type="text" name="sjbm" id="sjbm" />
+                 &nbsp;
+                运营编码：<input type="text" name="yybm" id="yybm" />
                 &nbsp;
                  任务类型：<select id="renwu" name="renwu">
                      <option value="no">无</option>
@@ -100,7 +106,6 @@
                      <option value="is_get_stock">虾皮采集后台库存</option>
                      <option value="is_cj_bal_inc">虾皮采集Income-Balance</option>
                      <option value="is_cj_product_overview">虾皮采集ProductOverview</option>
-                     <option value="is_add_affiliate">自动邀请达人</option>
 
                  </select>&nbsp;
                  任务状态：

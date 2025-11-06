@@ -66,15 +66,16 @@ namespace WebApplication11.cg
             {
                 where += " and SJBM='" + Request.QueryString["sjbm"].Trim().Replace("'", "''") + "'";
             }
+            if (Request.QueryString["yybm"] != null && Request.QueryString["yybm"] != "")
+            {
+                where += " and yybm='" + Request.QueryString["yybm"].Trim().Replace("'", "''") + "'";
+            }
+
             if (Request.QueryString["Country"] != null && Request.QueryString["Country"] != "")
             {
                 if (Request.QueryString["Country"] != "all")
                 {
-                    string cc = "";
-                    if (Request.QueryString["Country"] == "yn")
-                    {
-                        cc = "印尼";
-                    }
+                    string cc = Request.QueryString["Country"].ToString();
                     where += "and Country='" + cc + "'";
                 }
             }
