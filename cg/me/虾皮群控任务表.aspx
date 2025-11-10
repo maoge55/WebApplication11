@@ -101,6 +101,7 @@
                      <option value="is_ad_move">广告测品转平台</option>
                      <option value="is_paused_testad">暂停测品广告</option>
                      <option value="is_opt">虾皮优选仓广告管理</option>
+                     <option value="is_paused_mlad">马来测品管理(CPC和CTR)</option>
                      <option value="isDelete">删除店铺全部产品</option>
                      <option value="isCJMyList">虾皮采集我的产品概况</option>
                      <option value="isGetOrdANDPirce">虾皮采集后台订单</option>
