@@ -108,7 +108,7 @@
                      <option value="is_get_stock">虾皮采集后台库存</option>
 <%--                     <option value="is_cj_bal_inc">虾皮采集Income-Balance</option>--%>
                      <option value="is_cj_product_overview">虾皮采集ProductOverview</option>
-
+                     <option value="is_cj_pro">采集马来西亚虾皮产品</option>
                  </select>&nbsp;
                  任务状态：
                  <select id="renwu_zt" name="renwu_zt">
