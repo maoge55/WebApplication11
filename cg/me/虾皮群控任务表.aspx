@@ -97,6 +97,12 @@
                      <option value="isCreAd">发布广告</option>
                      <option value="is_cj_adsrpt">采集广告报表</option>
                      <option value="is_publish_bigdata">虾皮自动发布大数据</option>
+                     <option value="is_big_1atc">大数据一筛ATC</option>
+                     <option value="is_big_2atc">大数据二筛ATC</option>
+                     <option value="is_big_3atc">大数据三筛ATC</option>
+                     <option value="is_big_4atc">大数据四筛ATC</option>
+                     <option value="is_big_5atc">大数据五筛ATC</option>
+                     <option value="is_big_6atc">大数据六筛ATC</option>
                      <option value="is_th_copy_right">泰国铺货过滤侵权</option>
                      <option value="is_ad_move">广告测品转平台</option>
                      <option value="is_paused_testad">暂停测品广告</option>
