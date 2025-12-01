@@ -102,6 +102,9 @@
                      <option value="is_big_4atc">大数据四筛ATC</option>
                      <option value="is_big_5atc">大数据五筛ATC</option>
                      <option value="is_big_6atc">大数据六筛ATC</option>
+                     <option value="is_bx_1atc">巴西广告一筛ATC</option>
+                     <option value="is_bx_2atc">巴西广告二筛ATC</option>
+                     <option value="is_bx_3atc">巴西广告三筛ATC</option>
                      <option value="is_th_copy_right">泰国铺货过滤侵权</option>
                      <option value="is_ad_move">广告测品大数据发布</option>
                      <option value="is_paused_testad">测品广告管理</option>
