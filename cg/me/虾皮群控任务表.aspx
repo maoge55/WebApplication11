@@ -105,6 +105,9 @@
                      <option value="is_bx_1atc">巴西广告一筛ATC</option>
                      <option value="is_bx_2atc">巴西广告二筛ATC</option>
                      <option value="is_bx_3atc">巴西广告三筛ATC</option>
+                     <option value="is_th_1atc">泰国广告一筛ATC</option>
+                     <option value="is_th_2atc">泰国广告二筛ATC</option>
+                     <option value="is_th_3atc">泰国广告三筛ATC</option>
                      <option value="is_th_copy_right">泰国铺货过滤侵权</option>
                      <option value="is_ad_move">广告测品大数据发布</option>
                      <option value="is_paused_testad">测品广告管理</option>
